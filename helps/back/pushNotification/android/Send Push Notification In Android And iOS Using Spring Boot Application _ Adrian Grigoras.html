@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<!-- saved from url=(0090)http://adriangrigoras.com/blog/send-push-notification-android-ios-spring-boot-application/ -->
+<html lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#" class=" js"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="stndz-style"></style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://adriangrigoras.com/blog/xmlrpc.php">
+<!--[if lt IE 9]>
+<script src="http://adriangrigoras.com/blog/wp-content/themes/iconic-one/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+<title>Send Push Notification In Android And iOS Using Spring Boot Application | Adrian Grigoras</title>
+
+<!-- SEO Ultimate (http://www.seodesignsolutions.com/wordpress-seo/) -->
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Send Push Notification In Android And iOS Using Spring Boot Application">
+	<meta property="og:url" content="http://adriangrigoras.com/blog/send-push-notification-android-ios-spring-boot-application/">
+	<meta property="article:published_time" content="2018-04-05">
+	<meta property="article:modified_time" content="2018-04-05">
+	<meta property="article:author" content="http://adriangrigoras.com/blog/author/adrian/">
+	<meta property="article:section" content="Programming">
+	<meta property="og:site_name" content="Adrian Grigoras">
+	<meta name="twitter:card" content="summary">
+<!-- /SEO Ultimate -->
+
+<link rel="dns-prefetch" href="http://platform-api.sharethis.com/">
+<link rel="dns-prefetch" href="http://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="http://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Adrian Grigoras » Feed" href="http://adriangrigoras.com/blog/feed/">
+<link rel="alternate" type="application/rss+xml" title="Adrian Grigoras » Comments Feed" href="http://adriangrigoras.com/blog/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Adrian Grigoras » Send Push Notification In Android And iOS Using Spring Boot Application Comments Feed" href="http://adriangrigoras.com/blog/send-push-notification-android-ios-spring-boot-application/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/adriangrigoras.com\/blog\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.7"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Send Push Notification In Android And iOS Using Spring Boot Application _ Adrian Grigoras_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="./Send Push Notification In Android And iOS Using Spring Boot Application _ Adrian Grigoras_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="themonic-fonts-css" href="./Send Push Notification In Android And iOS Using Spring Boot Application _ Adrian Grigoras_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="themonic-style-css" href="./Send Push Notification In Android And iOS Using Spring Boot Application _ Adrian Grigoras_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="custom-style-css" href="./Send Push Notification In Android And iOS Using Spring Boot Application _ Adrian Grigoras_files/custom.css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='themonic-ie-css'  href='http://adriangrigoras.com/blog/wp-content/themes/iconic-one/css/ie.css?ver=20130305' type='text/css' media='all' />
+<![endif]-->
+<script type="text/javascript" src="./Send Push Notification In Android And iOS Using Spring Boot Application _ Adrian Grigoras_files/sharethis.js.download"></script>
+<link rel="https://api.w.org/" href="http://adriangrigoras.com/blog/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://adriangrigoras.com/blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://adriangrigoras.com/blog/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Push Notifications Tutorial: Getting Started" href="http://adriangrigoras.com/blog/push-notifications-tutorial-started/">
+<link rel="next" title="Kafka Architecture" href="http://adriangrigoras.com/blog/kafka-architecture/">
+<meta name="generator" content="WordPress 5.2.7">
+<link rel="canonical" href="http://adriangrigoras.com/blog/send-push-notification-android-ios-spring-boot-application/">
+<link rel="shortlink" href="http://adriangrigoras.com/blog/?p=865">
+<link rel="alternate" type="application/json+oembed" href="http://adriangrigoras.com/blog/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fadriangrigoras.com%2Fblog%2Fsend-push-notification-android-ios-spring-boot-application%2F">
+<link rel="alternate" type="text/xml+oembed" href="http://adriangrigoras.com/blog/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fadriangrigoras.com%2Fblog%2Fsend-push-notification-android-ios-spring-boot-application%2F&amp;format=xml">
+<style>._3emE9--dark-theme .-S-tR--ff-downloader{background:rgba(30,30,30,.93);border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);color:#fff}._3emE9--dark-theme .-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn{background:#3d4b52}._3emE9--dark-theme .-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn:hover{background:#131415}._3emE9--dark-theme .-S-tR--ff-downloader ._10vpG--footer{background:rgba(30,30,30,.93)}._2mDEx--white-theme .-S-tR--ff-downloader{background:#fff;border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);color:#314c75}._2mDEx--white-theme .-S-tR--ff-downloader ._6_Mtt--header{font-weight:700}._2mDEx--white-theme .-S-tR--ff-downloader ._2dFLA--container ._2bWNS--notice{border:0;color:rgba(0,0,0,.88)}._2mDEx--white-theme .-S-tR--ff-downloader ._10vpG--footer{background:#fff}.-S-tR--ff-downloader{display:block;overflow:hidden;position:fixed;bottom:20px;right:7.1%;width:330px;height:180px;background:rgba(30,30,30,.93);border-radius:2px;color:#fff;z-index:99999999;border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);transition:.5s}.-S-tR--ff-downloader._3M7UQ--minimize{height:62px}.-S-tR--ff-downloader._3M7UQ--minimize .nxuu4--file-info,.-S-tR--ff-downloader._3M7UQ--minimize ._6_Mtt--header{display:none}.-S-tR--ff-downloader ._6_Mtt--header{padding:10px;font-size:17px;font-family:sans-serif}.-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn{float:right;background:#f1ecec;height:20px;width:20px;text-align:center;padding:2px;margin-top:-10px;cursor:pointer}.-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn:hover{background:#e2dede}.-S-tR--ff-downloader ._13XQ2--error{color:red;padding:10px;font-size:12px;line-height:19px}.-S-tR--ff-downloader ._2dFLA--container{position:relative;height:100%}.-S-tR--ff-downloader ._2dFLA--container .nxuu4--file-info{padding:6px 15px 0;font-family:sans-serif}.-S-tR--ff-downloader ._2dFLA--container .nxuu4--file-info div{margin-bottom:5px;width:100%;overflow:hidden}.-S-tR--ff-downloader ._2dFLA--container ._2bWNS--notice{margin-top:21px;font-size:11px}.-S-tR--ff-downloader ._10vpG--footer{width:100%;bottom:0;position:absolute;font-weight:700}.-S-tR--ff-downloader ._10vpG--footer ._2V73d--loader{-webkit-animation:n0BD1--rotation 3.5s linear forwards;animation:n0BD1--rotation 3.5s linear forwards;position:absolute;top:-120px;left:calc(50% - 35px);border-radius:50%;border:5px solid #fff;border-top-color:#a29bfe;height:70px;width:70px;display:flex;justify-content:center;align-items:center}.-S-tR--ff-downloader ._10vpG--footer ._24wjw--loading-bar{width:100%;height:18px;background:#dfe6e9;border-radius:5px}.-S-tR--ff-downloader ._10vpG--footer ._24wjw--loading-bar ._1FVu9--progress-bar{height:100%;background:#8bc34a;border-radius:5px}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status{margin-top:10px}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status ._1XilH--state{float:left;font-size:.9em;letter-spacing:1pt;text-transform:uppercase;width:100px;height:20px;position:relative}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status ._1jiaj--percentage{float:right}</style></head>
+<body class="post-template-default single single-post postid-865 single-format-standard custom-font-enabled single-author">
+<div id="page" class="site">
+	<header id="masthead" class="site-header" role="banner">
+					<div class="io-title-description">
+			<a href="http://adriangrigoras.com/blog/" title="Adrian Grigoras" rel="home">Adrian Grigoras</a>
+				<br ...=""> 
+						</div>
+		
+		
+		<nav id="site-navigation" class="themonic-nav" role="navigation">
+			<a class="assistive-text" href="http://adriangrigoras.com/blog/send-push-notification-android-ios-spring-boot-application/#main" title="Skip to content">Skip to content</a>
+			<ul id="menu-top" class="nav-menu"><li id="menu-item-249" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-249"><a href="http://adriangrigoras.com/blog/">Home</a></li>
+<li id="menu-item-253" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-253"><a href="http://adriangrigoras.com/blog/category/leadership/">Leadership</a></li>
+<li id="menu-item-251" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-251"><a href="http://adriangrigoras.com/blog/category/architecture/">Architecture</a></li>
+<li id="menu-item-276" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-276"><a href="http://adriangrigoras.com/blog/category/trends/">Trends</a></li>
+<li id="menu-item-252" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-252"><a href="http://adriangrigoras.com/blog/category/programming/">Programming</a></li>
+<li id="menu-item-649" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-649"><a href="http://adriangrigoras.com/blog/category/personal-development/">Personal development</a></li>
+<li id="menu-item-811" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-811"><a href="https://www.linkedin.com/in/adriancgrigoras/">About me</a></li>
+</ul><select class="selectnav" id="selectnav1"><option value="">Menu</option><option value="http://adriangrigoras.com/blog/">HOME</option><option value="http://adriangrigoras.com/blog/category/leadership/">LEADERSHIP</option><option value="http://adriangrigoras.com/blog/category/architecture/">ARCHITECTURE</option><option value="http://adriangrigoras.com/blog/category/trends/">TRENDS</option><option value="http://adriangrigoras.com/blog/category/programming/">PROGRAMMING</option><option value="http://adriangrigoras.com/blog/category/personal-development/">PERSONAL DEVELOPMENT</option><option value="https://www.linkedin.com/in/adriancgrigoras/">ABOUT ME</option></select>		</nav><!-- #site-navigation -->
+		<div class="clear"></div>
+	</header><!-- #masthead -->
+
+	<div id="main" class="wrapper">	<div id="primary" class="site-content">
+		<div id="content" role="main">
+
+			
+				
+	<article id="post-865" class="post-865 post type-post status-publish format-standard hentry category-programming">
+				<header class="entry-header">
+						<h1 class="entry-title">Send Push Notification In Android And iOS Using Spring Boot Application</h1>
+									
+		<div class="below-title-meta">
+		<div class="adt">
+		By        <span class="vcard author">
+			<span class="fn"><a href="http://adriangrigoras.com/blog/author/adrian/" title="Posts by adrian" rel="author">adrian</a></span>
+        </span>
+        <span class="meta-sep">|</span> 
+				
+				<span class="date updated">April 5, 2018</span>
+				 
+        </div>
+		<div class="adt-comment">
+		<a class="link-comments" href="http://adriangrigoras.com/blog/send-push-notification-android-ios-spring-boot-application/#respond">0 Comment</a> 
+        </div>       
+		</div><!-- below title meta end -->
+			
+						
+		</header><!-- .entry-header -->
+
+							<div class="entry-content">
+						<p>To send a push notification in android device we are going to use&nbsp;<strong>FCM</strong>&nbsp;and for iOS device we will use&nbsp;<strong>APNS</strong>.</p>
+<p>&nbsp;</p>
+<p><u><strong>Android push notification:</strong></u></p>
+<p><strong>FCM</strong>&nbsp;stands for Firebase Cloud Messaging its a service that is provided by Google. Inorder to use FCM you need an API key which you can get through firebase console and a device token or registration token of your device from FCM. If you are a backend developer and push notification is used in your project then you can request&nbsp; your android developer to register your project app with FCM and provide API key and device token respectively. If you are ready with API key and device token you can use the below code to send push notification to a android device.</p>
+<div>
+<pre>try {
+   String androidFcmKey="XXXXXXXXXXXX";
+   String androidFcmUrl="<a class="vglnk" href="https://fcm.googleapis.com/fcm/send" rel="nofollow">https://fcm.googleapis.com/fcm/send</a>";
+
+   RestTemplate restTemplate = new RestTemplate();
+   HttpHeaders httpHeaders = new HttpHeaders();
+   httpHeaders.set("Authorization", "key=" + androidFcmKey);
+   httpHeaders.set("Content-Type", "application/json");
+   JSONObject msg = new JSONObject();
+   JSONObject json = new JSONObject();
+
+   msg.put("title", "Title");
+   msg.put("body", "Message");
+   msg.put("notificationType", "Test");
+
+   json.put("data", msg);
+   json.put("to", deviceToken);
+
+   HttpEntity&lt;String&gt; httpEntity = new HttpEntity&lt;String&gt;(json.toString(),httpHeaders);
+   String response = restTemplate.postForObject(androidFcmUrl,httpEntity,String.class);
+   System.out.println(response);
+} catch (JSONException e) {
+   e.printStackTrace();
+}
+</pre>
+</div>
+<p>To send push notifications to multiple android devices just change this line&nbsp;finalMsg.put(“to”, deviceToken);&nbsp;to this&nbsp;finalMsg.put(“registration_ids”, deviceTokenArray);</p>
+<p>&nbsp;</p>
+<p><u><strong>iOS push notification:</strong></u></p>
+<p><strong>APNS&nbsp;</strong>stands for Apple Push Notification Service. For using this service Apple provides some cryptographic certificates which can be a pem or p12 file. In your spring boot application you need to add below written maven dependency for using APNS.</p>
+<div>
+<pre>&lt;dependency&gt;
+	&lt;groupId&gt;com.notnoop.apns&lt;/groupId&gt;
+	&lt;artifactId&gt;apns&lt;/artifactId&gt;
+	&lt;version&gt;1.0.0.Beta6&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+</div>
+<p>For Apple push notification certificate(p12 file) and device token you need to ask your project’s iOS developer.</p>
+<p>Save Apple push notification certificate into resources folder of your spring boot application. If you are ready with certificate and device token you can use the below code to send push notification to a iOS device.</p>
+<div>
+<pre>@Autowired
+Environment env;
+.
+.
+.
+try {
+   InputStream inputStream = new ClassPathResource("push.p12").getInputStream();
+   ApnsService service;
+   if (Arrays.asList(env.getActiveProfiles()).contains("pro")) {
+     service = APNS.newService().withCert(inputStream, "Password@123")
+                     .withProductionDestination().build();
+   } else {
+     service = APNS.newService().withCert(inputStream, "Password@123")
+                     .withSandboxDestination().build();
+   }
+   String payload = APNS.newPayload().customField("customData","customData")
+                          .alertBody("Message").build();
+   ApnsNotification apns = service.push(deviceToken, payload);
+} catch (IOException e) {
+   e.printStackTrace();
+}
+</pre>
+</div>
+<p>We have configured push notification based on environment thats why we have autowired Environment interface. For sending notifications to multiple iOS devices you need to iterate over ApnService’s push method.</p>
+<p>source:&nbsp;http://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application</p>
+											</div><!-- .entry-content -->
+		
+	<footer class="entry-meta">
+					<span>Category: <a href="http://adriangrigoras.com/blog/category/programming/" rel="category tag">Programming</a></span>
+								<span></span>
+			
+           						</footer><!-- .entry-meta -->
+	</article><!-- #post -->
+				<nav class="nav-single">
+					<div class="assistive-text">Post navigation</div>
+					<span class="nav-previous"><a href="http://adriangrigoras.com/blog/push-notifications-tutorial-started/" rel="prev"><span class="meta-nav">←</span> Push Notifications Tutorial: Getting Started</a></span>
+					<span class="nav-next"><a href="http://adriangrigoras.com/blog/kafka-architecture/" rel="next">Kafka Architecture <span class="meta-nav">→</span></a></span>
+				</nav><!-- .nav-single -->
+
+				
+<div id="comments" class="comments-area">
+
+	
+	
+	
+</div><!-- #comments .comments-area -->
+			
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+
+			<div id="secondary" class="widget-area" role="complementary">
+			<aside id="search-2" class="widget widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://adriangrigoras.com/blog/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s">
+					<input type="submit" id="searchsubmit" value="Search">
+				</div>
+			</form></aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<p class="widget-title">Recent Posts</p>		<ul>
+											<li>
+					<a href="http://adriangrigoras.com/blog/what-to-know-about-automation-in-digital-architecture/">What to Know About Automation in Digital Architecture</a>
+									</li>
+											<li>
+					<a href="http://adriangrigoras.com/blog/mind-stretched-idea-regains-original-dimensions/">The mind, once stretched by a new idea, never regains its original dimensions.</a>
+									</li>
+											<li>
+					<a href="http://adriangrigoras.com/blog/postman-collections-default-part-api-documentation/">Postman Collections Should be A Default Part of Your API Documentation</a>
+									</li>
+											<li>
+					<a href="http://adriangrigoras.com/blog/kafka-architecture/">Kafka Architecture</a>
+									</li>
+											<li>
+					<a href="http://adriangrigoras.com/blog/send-push-notification-android-ios-spring-boot-application/">Send Push Notification In Android And iOS Using Spring Boot Application</a>
+									</li>
+											<li>
+					<a href="http://adriangrigoras.com/blog/push-notifications-tutorial-started/">Push Notifications Tutorial: Getting Started</a>
+									</li>
+											<li>
+					<a href="http://adriangrigoras.com/blog/distributed-real-time-data-store-flexible-deduplication/">Distributed Real-time Data Store with Flexible Deduplication</a>
+									</li>
+											<li>
+					<a href="http://adriangrigoras.com/blog/patterns-for-resilient-architecture/">Patterns for Resilient Architecture</a>
+									</li>
+											<li>
+					<a href="http://adriangrigoras.com/blog/kafka-explained/">Kafka explained</a>
+									</li>
+											<li>
+					<a href="http://adriangrigoras.com/blog/declaration-daily-heroism/">Declaration for Daily Heroism</a>
+									</li>
+					</ul>
+		</aside><aside id="linkcat-2" class="widget widget_links"><p class="widget-title">Blogroll</p>
+	<ul class="xoxo blogroll">
+<li><a href="http://lambda-architecture.net/" target="_blank">Lambda Architecture</a></li>
+<li><a href="http://web.stanford.edu/group/mast/cgi-bin/drupal/" target="_blank">Multiscale Architecture and Systems Team (MAST)</a></li>
+<li><a href="http://www.easybill.ro/" title="Program facturare online gratuit" target="_blank">Program facturare online – EasyBill</a></li>
+
+	</ul>
+</aside>
+		</div><!-- #secondary -->
+		</div><!-- #main .wrapper -->
+	<footer id="colophon" role="contentinfo">
+		<div class="site-info">
+		<div class="footercopy">Copyright 2015</div>
+		<div class="footercredit"></div>
+		<div class="clear"></div>
+		</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+		<div class="site-wordpress">
+				<a href="http://themonic.com/iconic-one/">Iconic One</a> Theme | Powered by <a href="http://wordpress.org/">Wordpress</a>
+				</div><!-- .site-info -->
+				<div class="clear"></div>
+</div><!-- #page -->
+
+<script>
+    jQuery(document).ready(function () {
+		jQuery.post('http://adriangrigoras.com/blog?ga_action=googleanalytics_get_script', {action: 'googleanalytics_get_script'}, function(response) {
+			var s = document.createElement("script");
+			s.type = "text/javascript";
+			s.innerHTML = response;
+			jQuery("head").append(s);
+		});
+    });
+</script><div id="su-footer-links" style="text-align: center;"></div><script type="text/javascript" src="./Send Push Notification In Android And iOS Using Spring Boot Application _ Adrian Grigoras_files/selectnav.js.download"></script><iframe src="./Send Push Notification In Android And iOS Using Spring Boot Application _ Adrian Grigoras_files/portal-v2.html" id="st_gdpr_iframe" title="GDPR Consent Management" style="width: 0px; height: 0px; position: absolute; left: -5000px;"></iframe>
+<script type="text/javascript" src="./Send Push Notification In Android And iOS Using Spring Boot Application _ Adrian Grigoras_files/wp-embed.min.js.download"></script>
+
+
+<!-- Dynamic page generated in 0.374 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2020-09-13 03:58:15 -->
+
+<!-- super cache --></body></html>

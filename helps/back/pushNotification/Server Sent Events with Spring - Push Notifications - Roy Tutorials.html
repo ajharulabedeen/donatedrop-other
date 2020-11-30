@@ -1,0 +1,2832 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://www.roytuts.com/server-sent-events-spring-push-notifications/ -->
+<html lang="en-US" class="" style="transform: none;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="stndz-style"></style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="https://gmpg.org/xfn/11">
+<link rel="pingback" href="https://www.roytuts.com/xmlrpc.php">
+
+<title>Server Sent Events with Spring - Push Notifications - Roy Tutorials</title>
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Server Sent Events with Spring - Push Notifications - Roy Tutorials">
+<meta property="og:description" content="Introduction We have seen a popular choice for sending real time data from server to client in web application is using WebSocket in our previous tutorials Messaging with STOMP over WebSockets using Spring, Angular 8 and ActiveMQ and Spring Boot WebSocket Angular 8 Gradle Example. WebSocket opens bidirectional connections between server and client. So both server and client can send messages. Sometimes we face situations, where the application needs only one way communication, i.e., sending data from server to the client and for this Spring provides a simpler solution using Server…">
+<meta property="og:url" content="https://www.roytuts.com/server-sent-events-spring-push-notifications/">
+<meta property="og:site_name" content="Roy Tutorials">
+<meta property="article:author" content="https://www.facebook.com/sarkarblog">
+<meta property="article:published_time" content="2018-04-10T02:06:48+00:00">
+<meta property="article:modified_time" content="2020-05-19T01:00:50+00:00">
+<meta property="fb:app_id" content="669995623596432">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@roytuts">
+<script type="text/javascript" async="" src="./Server Sent Events with Spring - Push Notifications - Roy Tutorials_files/analytics.js.download"></script><script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.roytuts.com/#organization","name":"Roy Tutorials","url":"https://www.roytuts.com/","sameAs":[],"logo":{"@type":"ImageObject","@id":"https://www.roytuts.com/#logo","inLanguage":"en-US","url":"https://www.roytuts.com/wp-content/uploads/2020/08/favicon-32x32-1.png","width":32,"height":32,"caption":"Roy Tutorials"},"image":{"@id":"https://www.roytuts.com/#logo"}},{"@type":"WebSite","@id":"https://www.roytuts.com/#website","url":"https://www.roytuts.com/","name":"Roy Tutorials","description":"Technical... Theoretical... Practical...","publisher":{"@id":"https://www.roytuts.com/#organization"},"potentialAction":[{"@type":"SearchAction","target":"https://www.roytuts.com/?s={search_term_string}","query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"WebPage","@id":"https://www.roytuts.com/server-sent-events-spring-push-notifications/#webpage","url":"https://www.roytuts.com/server-sent-events-spring-push-notifications/","name":"Server Sent Events with Spring - Push Notifications - Roy Tutorials","isPartOf":{"@id":"https://www.roytuts.com/#website"},"datePublished":"2018-04-10T02:06:48+00:00","dateModified":"2020-05-19T01:00:50+00:00","inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.roytuts.com/server-sent-events-spring-push-notifications/"]}]},{"@type":"Article","@id":"https://www.roytuts.com/server-sent-events-spring-push-notifications/#article","isPartOf":{"@id":"https://www.roytuts.com/server-sent-events-spring-push-notifications/#webpage"},"author":{"@id":"https://www.roytuts.com/#/schema/person/60dc9e695b822482a8c05e693d4e44de"},"headline":"Server Sent Events with Spring &#8211; Push Notifications","datePublished":"2018-04-10T02:06:48+00:00","dateModified":"2020-05-19T01:00:50+00:00","mainEntityOfPage":{"@id":"https://www.roytuts.com/server-sent-events-spring-push-notifications/#webpage"},"commentCount":11,"publisher":{"@id":"https://www.roytuts.com/#organization"},"keywords":"Event","articleSection":"Spring Boot,Spring REST","inLanguage":"en-US","potentialAction":[{"@type":"CommentAction","name":"Comment","target":["https://www.roytuts.com/server-sent-events-spring-push-notifications/#respond"]}]},{"@type":"Person","@id":"https://www.roytuts.com/#/schema/person/60dc9e695b822482a8c05e693d4e44de","name":"Soumitra","description":"I am a professional Web developer, Enterprise Application developer, Software Engineer and Blogger and writing blogs is my passion. Connect me on Github | Facebook | Twitter | LinkedIn","sameAs":["https://www.facebook.com/sarkarblog","https://www.linkedin.com/in/soumitra-sarkar-80ba0328/","https://twitter.com/roytuts","https://www.youtube.com/channel/UCMysotNzptWegWBSY9lox_g/"]}]}</script>
+
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Roy Tutorials » Feed" href="https://www.roytuts.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Roy Tutorials » Comments Feed" href="https://www.roytuts.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Roy Tutorials » Server Sent Events with Spring – Push Notifications Comments Feed" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/feed/">
+<link rel="stylesheet" id="supermag-style-css" href="./Server Sent Events with Spring - Push Notifications - Roy Tutorials_files/style.css" type="text/css" media="all">
+<style id="supermag-style-inline-css" type="text/css">
+
+            mark,
+            .comment-form .form-submit input,
+            .read-more,
+            .bn-title,
+            .home-icon.front_page_on,
+            .header-wrapper .menu li:hover > a,
+            .header-wrapper .menu > li.current-menu-item a,
+            .header-wrapper .menu > li.current-menu-parent a,
+            .header-wrapper .menu > li.current_page_parent a,
+            .header-wrapper .menu > li.current_page_ancestor a,
+            .header-wrapper .menu > li.current-menu-item > a:before,
+            .header-wrapper .menu > li.current-menu-parent > a:before,
+            .header-wrapper .menu > li.current_page_parent > a:before,
+            .header-wrapper .menu > li.current_page_ancestor > a:before,
+            .header-wrapper .main-navigation ul ul.sub-menu li:hover > a,
+            .header-wrapper .main-navigation ul ul.children li:hover > a,
+            .slider-section .cat-links a,
+            .featured-desc .below-entry-meta .cat-links a,
+            #calendar_wrap #wp-calendar #today,
+            #calendar_wrap #wp-calendar #today a,
+            .wpcf7-form input.wpcf7-submit:hover,
+            .breadcrumb{
+                background: #4db2ec;
+            }
+        
+            a:hover,
+            .screen-reader-text:focus,
+            .bn-content a:hover,
+            .socials a:hover,
+            .site-title a,
+            .search-block input#menu-search,
+            .widget_search input#s,
+            .search-block #searchsubmit,
+            .widget_search #searchsubmit,
+            .footer-sidebar .featured-desc .above-entry-meta a:hover,
+            .slider-section .slide-title:hover,
+            .besides-slider .post-title a:hover,
+            .slider-feature-wrap a:hover,
+            .slider-section .bx-controls-direction a,
+            .besides-slider .beside-post:hover .beside-caption,
+            .besides-slider .beside-post:hover .beside-caption a:hover,
+            .featured-desc .above-entry-meta span:hover,
+            .posted-on a:hover,
+            .cat-links a:hover,
+            .comments-link a:hover,
+            .edit-link a:hover,
+            .tags-links a:hover,
+            .byline a:hover,
+            .nav-links a:hover,
+            #supermag-breadcrumbs a:hover,
+            .wpcf7-form input.wpcf7-submit,
+             .woocommerce nav.woocommerce-pagination ul li a:focus, 
+             .woocommerce nav.woocommerce-pagination ul li a:hover, 
+             .woocommerce nav.woocommerce-pagination ul li span.current{
+                color: #4db2ec;
+            }
+            .search-block input#menu-search,
+            .widget_search input#s,
+            .tagcloud a{
+                border: 1px solid #4db2ec;
+            }
+            .footer-wrapper .border,
+            .nav-links .nav-previous a:hover,
+            .nav-links .nav-next a:hover{
+                border-top: 1px solid #4db2ec;
+            }
+             .besides-slider .beside-post{
+                border-bottom: 3px solid #4db2ec;
+            }
+            .widget-title,
+            .footer-wrapper,
+            .page-header .page-title,
+            .single .entry-header .entry-title,
+            .page .entry-header .entry-title{
+                border-bottom: 1px solid #4db2ec;
+            }
+            .widget-title:before,
+            .page-header .page-title:before,
+            .single .entry-header .entry-title:before,
+            .page .entry-header .entry-title:before {
+                border-bottom: 7px solid #4db2ec;
+            }
+           .wpcf7-form input.wpcf7-submit,
+            article.post.sticky{
+                border: 2px solid #4db2ec;
+            }
+           .breadcrumb::after {
+                border-left: 5px solid #4db2ec;
+            }
+           .rtl .breadcrumb::after {
+                border-right: 5px solid #4db2ec;
+                border-left:medium none;
+            }
+           .header-wrapper #site-navigation{
+                border-bottom: 5px solid #4db2ec;
+            }
+           @media screen and (max-width:992px){
+                .slicknav_btn.slicknav_open{
+                    border: 1px solid #4db2ec;
+                }
+                 .header-wrapper .main-navigation ul ul.sub-menu li:hover > a,
+                 .header-wrapper .main-navigation ul ul.children li:hover > a
+                 {
+                         background: #2d2d2d;
+                 }
+                .slicknav_btn.slicknav_open:before{
+                    background: #4db2ec;
+                    box-shadow: 0 6px 0 0 #4db2ec, 0 12px 0 0 #4db2ec;
+                }
+                .slicknav_nav li:hover > a,
+                .slicknav_nav li.current-menu-ancestor a,
+                .slicknav_nav li.current-menu-item  > a,
+                .slicknav_nav li.current_page_item a,
+                .slicknav_nav li.current_page_item .slicknav_item span,
+                .slicknav_nav li .slicknav_item:hover a{
+                    color: #4db2ec;
+                }
+            }
+                    .cat-links .at-cat-item-1{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-7{
+                    background: #0b9aed!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-7 .widget-title::before,
+                    body.category-7 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #0b9aed;
+                    }
+                    
+                    .at-cat-color-wrap-7 .widget-title,
+                     body.category-7 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #0b9aed;
+                    }
+                    .cat-links .at-cat-item-7:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-11{
+                    background: #1ea1ed!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-11 .widget-title::before,
+                    body.category-11 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #1ea1ed;
+                    }
+                    
+                    .at-cat-color-wrap-11 .widget-title,
+                     body.category-11 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #1ea1ed;
+                    }
+                    .cat-links .at-cat-item-11:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-30{
+                    background: #3cb76d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-30 .widget-title::before,
+                    body.category-30 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #3cb76d;
+                    }
+                    
+                    .at-cat-color-wrap-30 .widget-title,
+                     body.category-30 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #3cb76d;
+                    }
+                    .cat-links .at-cat-item-30:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-67{
+                    background: #5260f9!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-67 .widget-title::before,
+                    body.category-67 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #5260f9;
+                    }
+                    
+                    .at-cat-color-wrap-67 .widget-title,
+                     body.category-67 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #5260f9;
+                    }
+                    .cat-links .at-cat-item-67:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-68{
+                    background: #eff751!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-68 .widget-title::before,
+                    body.category-68 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #eff751;
+                    }
+                    
+                    .at-cat-color-wrap-68 .widget-title,
+                     body.category-68 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #eff751;
+                    }
+                    .cat-links .at-cat-item-68:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-109{
+                    background: #8f50f4!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-109 .widget-title::before,
+                    body.category-109 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #8f50f4;
+                    }
+                    
+                    .at-cat-color-wrap-109 .widget-title,
+                     body.category-109 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #8f50f4;
+                    }
+                    .cat-links .at-cat-item-109:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-115{
+                    background: #d851f7!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-115 .widget-title::before,
+                    body.category-115 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #d851f7;
+                    }
+                    
+                    .at-cat-color-wrap-115 .widget-title,
+                     body.category-115 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #d851f7;
+                    }
+                    .cat-links .at-cat-item-115:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-134{
+                    background: #d64689!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-134 .widget-title::before,
+                    body.category-134 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #d64689;
+                    }
+                    
+                    .at-cat-color-wrap-134 .widget-title,
+                     body.category-134 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #d64689;
+                    }
+                    .cat-links .at-cat-item-134:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-288{
+                    background: #408e2f!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-288 .widget-title::before,
+                    body.category-288 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #408e2f;
+                    }
+                    
+                    .at-cat-color-wrap-288 .widget-title,
+                     body.category-288 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #408e2f;
+                    }
+                    .cat-links .at-cat-item-288:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-344{
+                    background: #dd3333!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-344 .widget-title::before,
+                    body.category-344 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #dd3333;
+                    }
+                    
+                    .at-cat-color-wrap-344 .widget-title,
+                     body.category-344 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #dd3333;
+                    }
+                    .cat-links .at-cat-item-344:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-355{
+                    background: #81d742!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-355 .widget-title::before,
+                    body.category-355 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #81d742;
+                    }
+                    
+                    .at-cat-color-wrap-355 .widget-title,
+                     body.category-355 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #81d742;
+                    }
+                    .cat-links .at-cat-item-355:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-371{
+                    background: #b43fbf!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-371 .widget-title::before,
+                    body.category-371 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #b43fbf;
+                    }
+                    
+                    .at-cat-color-wrap-371 .widget-title,
+                     body.category-371 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #b43fbf;
+                    }
+                    .cat-links .at-cat-item-371:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-378{
+                    background: #72256c!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-378 .widget-title::before,
+                    body.category-378 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #72256c;
+                    }
+                    
+                    .at-cat-color-wrap-378 .widget-title,
+                     body.category-378 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #72256c;
+                    }
+                    .cat-links .at-cat-item-378:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-840{
+                    background: #bc3e8e!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-840 .widget-title::before,
+                    body.category-840 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #bc3e8e;
+                    }
+                    
+                    .at-cat-color-wrap-840 .widget-title,
+                     body.category-840 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #bc3e8e;
+                    }
+                    .cat-links .at-cat-item-840:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-841{
+                    background: #772757!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-841 .widget-title::before,
+                    body.category-841 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #772757;
+                    }
+                    
+                    .at-cat-color-wrap-841 .widget-title,
+                     body.category-841 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #772757;
+                    }
+                    .cat-links .at-cat-item-841:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-856{
+                    background: #38133a!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-856 .widget-title::before,
+                    body.category-856 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #38133a;
+                    }
+                    
+                    .at-cat-color-wrap-856 .widget-title,
+                     body.category-856 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #38133a;
+                    }
+                    .cat-links .at-cat-item-856:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-930{
+                    background: #ba3d94!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-930 .widget-title::before,
+                    body.category-930 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #ba3d94;
+                    }
+                    
+                    .at-cat-color-wrap-930 .widget-title,
+                     body.category-930 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #ba3d94;
+                    }
+                    .cat-links .at-cat-item-930:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1144{
+                    background: #872c53!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1144 .widget-title::before,
+                    body.category-1144 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #872c53;
+                    }
+                    
+                    .at-cat-color-wrap-1144 .widget-title,
+                     body.category-1144 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #872c53;
+                    }
+                    .cat-links .at-cat-item-1144:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1166{
+                    background: #2f7091!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1166 .widget-title::before,
+                    body.category-1166 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #2f7091;
+                    }
+                    
+                    .at-cat-color-wrap-1166 .widget-title,
+                     body.category-1166 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #2f7091;
+                    }
+                    .cat-links .at-cat-item-1166:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1167{
+                    background: #2f8e88!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1167 .widget-title::before,
+                    body.category-1167 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #2f8e88;
+                    }
+                    
+                    .at-cat-color-wrap-1167 .widget-title,
+                     body.category-1167 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #2f8e88;
+                    }
+                    .cat-links .at-cat-item-1167:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1168{
+                    background: #51cbf7!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1168 .widget-title::before,
+                    body.category-1168 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #51cbf7;
+                    }
+                    
+                    .at-cat-color-wrap-1168 .widget-title,
+                     body.category-1168 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #51cbf7;
+                    }
+                    .cat-links .at-cat-item-1168:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1219{
+                    background: #8f50f4!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1219 .widget-title::before,
+                    body.category-1219 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #8f50f4;
+                    }
+                    
+                    .at-cat-color-wrap-1219 .widget-title,
+                     body.category-1219 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #8f50f4;
+                    }
+                    .cat-links .at-cat-item-1219:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1228{
+                    background: #54531b!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1228 .widget-title::before,
+                    body.category-1228 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #54531b;
+                    }
+                    
+                    .at-cat-color-wrap-1228 .widget-title,
+                     body.category-1228 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #54531b;
+                    }
+                    .cat-links .at-cat-item-1228:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1234{
+                    background: #602f1f!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1234 .widget-title::before,
+                    body.category-1234 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #602f1f;
+                    }
+                    
+                    .at-cat-color-wrap-1234 .widget-title,
+                     body.category-1234 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #602f1f;
+                    }
+                    .cat-links .at-cat-item-1234:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1249{
+                    background: #e2784a!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1249 .widget-title::before,
+                    body.category-1249 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #e2784a;
+                    }
+                    
+                    .at-cat-color-wrap-1249 .widget-title,
+                     body.category-1249 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #e2784a;
+                    }
+                    .cat-links .at-cat-item-1249:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1271{
+                    background: #d1b245!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1271 .widget-title::before,
+                    body.category-1271 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #d1b245;
+                    }
+                    
+                    .at-cat-color-wrap-1271 .widget-title,
+                     body.category-1271 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #d1b245;
+                    }
+                    .cat-links .at-cat-item-1271:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1276{
+                    background: #bbc13f!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1276 .widget-title::before,
+                    body.category-1276 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #bbc13f;
+                    }
+                    
+                    .at-cat-color-wrap-1276 .widget-title,
+                     body.category-1276 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #bbc13f;
+                    }
+                    .cat-links .at-cat-item-1276:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1297{
+                    background: #2d260f!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1297 .widget-title::before,
+                    body.category-1297 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #2d260f;
+                    }
+                    
+                    .at-cat-color-wrap-1297 .widget-title,
+                     body.category-1297 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #2d260f;
+                    }
+                    .cat-links .at-cat-item-1297:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1331{
+                    background: #29541b!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1331 .widget-title::before,
+                    body.category-1331 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #29541b;
+                    }
+                    
+                    .at-cat-color-wrap-1331 .widget-title,
+                     body.category-1331 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #29541b;
+                    }
+                    .cat-links .at-cat-item-1331:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1343{
+                    background: #2b7727!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1343 .widget-title::before,
+                    body.category-1343 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #2b7727;
+                    }
+                    
+                    .at-cat-color-wrap-1343 .widget-title,
+                     body.category-1343 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #2b7727;
+                    }
+                    .cat-links .at-cat-item-1343:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1363{
+                    background: #17473a!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1363 .widget-title::before,
+                    body.category-1363 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #17473a;
+                    }
+                    
+                    .at-cat-color-wrap-1363 .widget-title,
+                     body.category-1363 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #17473a;
+                    }
+                    .cat-links .at-cat-item-1363:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1372{
+                    background: #a5af38!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1372 .widget-title::before,
+                    body.category-1372 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #a5af38;
+                    }
+                    
+                    .at-cat-color-wrap-1372 .widget-title,
+                     body.category-1372 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #a5af38;
+                    }
+                    .cat-links .at-cat-item-1372:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1388{
+                    background: #8a8e2f!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1388 .widget-title::before,
+                    body.category-1388 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #8a8e2f;
+                    }
+                    
+                    .at-cat-color-wrap-1388 .widget-title,
+                     body.category-1388 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #8a8e2f;
+                    }
+                    .cat-links .at-cat-item-1388:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1396{
+                    background: #1f5e3c!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1396 .widget-title::before,
+                    body.category-1396 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #1f5e3c;
+                    }
+                    
+                    .at-cat-color-wrap-1396 .widget-title,
+                     body.category-1396 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #1f5e3c;
+                    }
+                    .cat-links .at-cat-item-1396:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1412{
+                    background: #284918!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1412 .widget-title::before,
+                    body.category-1412 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #284918;
+                    }
+                    
+                    .at-cat-color-wrap-1412 .widget-title,
+                     body.category-1412 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #284918;
+                    }
+                    .cat-links .at-cat-item-1412:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1424{
+                    background: #38aaa3!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1424 .widget-title::before,
+                    body.category-1424 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #38aaa3;
+                    }
+                    
+                    .at-cat-color-wrap-1424 .widget-title,
+                     body.category-1424 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #38aaa3;
+                    }
+                    .cat-links .at-cat-item-1424:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1425{
+                    background: #95aa38!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1425 .widget-title::before,
+                    body.category-1425 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #95aa38;
+                    }
+                    
+                    .at-cat-color-wrap-1425 .widget-title,
+                     body.category-1425 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #95aa38;
+                    }
+                    .cat-links .at-cat-item-1425:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1427{
+                    background: #5b2f91!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1427 .widget-title::before,
+                    body.category-1427 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #5b2f91;
+                    }
+                    
+                    .at-cat-color-wrap-1427 .widget-title,
+                     body.category-1427 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #5b2f91;
+                    }
+                    .cat-links .at-cat-item-1427:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1433{
+                    background: #202663!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1433 .widget-title::before,
+                    body.category-1433 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #202663;
+                    }
+                    
+                    .at-cat-color-wrap-1433 .widget-title,
+                     body.category-1433 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #202663;
+                    }
+                    .cat-links .at-cat-item-1433:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1434{
+                    background: #161d44!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1434 .widget-title::before,
+                    body.category-1434 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #161d44;
+                    }
+                    
+                    .at-cat-color-wrap-1434 .widget-title,
+                     body.category-1434 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #161d44;
+                    }
+                    .cat-links .at-cat-item-1434:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1435{
+                    background: #583ab2!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1435 .widget-title::before,
+                    body.category-1435 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #583ab2;
+                    }
+                    
+                    .at-cat-color-wrap-1435 .widget-title,
+                     body.category-1435 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #583ab2;
+                    }
+                    .cat-links .at-cat-item-1435:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1436{
+                    background: #5b1e50!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1436 .widget-title::before,
+                    body.category-1436 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #5b1e50;
+                    }
+                    
+                    .at-cat-color-wrap-1436 .widget-title,
+                     body.category-1436 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #5b1e50;
+                    }
+                    .cat-links .at-cat-item-1436:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1437{
+                    background: #305893!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1437 .widget-title::before,
+                    body.category-1437 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #305893;
+                    }
+                    
+                    .at-cat-color-wrap-1437 .widget-title,
+                     body.category-1437 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #305893;
+                    }
+                    .cat-links .at-cat-item-1437:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1438{
+                    background: #164438!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1438 .widget-title::before,
+                    body.category-1438 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #164438;
+                    }
+                    
+                    .at-cat-color-wrap-1438 .widget-title,
+                     body.category-1438 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #164438;
+                    }
+                    .cat-links .at-cat-item-1438:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1439{
+                    background: #1f5e2c!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1439 .widget-title::before,
+                    body.category-1439 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #1f5e2c;
+                    }
+                    
+                    .at-cat-color-wrap-1439 .widget-title,
+                     body.category-1439 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #1f5e2c;
+                    }
+                    .cat-links .at-cat-item-1439:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1440{
+                    background: #2e3d14!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1440 .widget-title::before,
+                    body.category-1440 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #2e3d14;
+                    }
+                    
+                    .at-cat-color-wrap-1440 .widget-title,
+                     body.category-1440 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #2e3d14;
+                    }
+                    .cat-links .at-cat-item-1440:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1441{
+                    background: #132b0e!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1441 .widget-title::before,
+                    body.category-1441 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #132b0e;
+                    }
+                    
+                    .at-cat-color-wrap-1441 .widget-title,
+                     body.category-1441 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #132b0e;
+                    }
+                    .cat-links .at-cat-item-1441:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1442{
+                    background: #314215!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1442 .widget-title::before,
+                    body.category-1442 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #314215;
+                    }
+                    
+                    .at-cat-color-wrap-1442 .widget-title,
+                     body.category-1442 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #314215;
+                    }
+                    .cat-links .at-cat-item-1442:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1443{
+                    background: #11351b!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1443 .widget-title::before,
+                    body.category-1443 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #11351b;
+                    }
+                    
+                    .at-cat-color-wrap-1443 .widget-title,
+                     body.category-1443 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #11351b;
+                    }
+                    .cat-links .at-cat-item-1443:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1445{
+                    background: #35511a!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1445 .widget-title::before,
+                    body.category-1445 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #35511a;
+                    }
+                    
+                    .at-cat-color-wrap-1445 .widget-title,
+                     body.category-1445 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #35511a;
+                    }
+                    .cat-links .at-cat-item-1445:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1446{
+                    background: #103328!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1446 .widget-title::before,
+                    body.category-1446 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #103328;
+                    }
+                    
+                    .at-cat-color-wrap-1446 .widget-title,
+                     body.category-1446 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #103328;
+                    }
+                    .cat-links .at-cat-item-1446:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1447{
+                    background: #772757!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1447 .widget-title::before,
+                    body.category-1447 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #772757;
+                    }
+                    
+                    .at-cat-color-wrap-1447 .widget-title,
+                     body.category-1447 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #772757;
+                    }
+                    .cat-links .at-cat-item-1447:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1448{
+                    background: #351121!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1448 .widget-title::before,
+                    body.category-1448 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #351121;
+                    }
+                    
+                    .at-cat-color-wrap-1448 .widget-title,
+                     body.category-1448 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #351121;
+                    }
+                    .cat-links .at-cat-item-1448:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1449{
+                    background: #6d244d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1449 .widget-title::before,
+                    body.category-1449 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #6d244d;
+                    }
+                    
+                    .at-cat-color-wrap-1449 .widget-title,
+                     body.category-1449 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #6d244d;
+                    }
+                    .cat-links .at-cat-item-1449:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1450{
+                    background: #502268!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1450 .widget-title::before,
+                    body.category-1450 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #502268;
+                    }
+                    
+                    .at-cat-color-wrap-1450 .widget-title,
+                     body.category-1450 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #502268;
+                    }
+                    .cat-links .at-cat-item-1450:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1451{
+                    background: #b23a66!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1451 .widget-title::before,
+                    body.category-1451 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #b23a66;
+                    }
+                    
+                    .at-cat-color-wrap-1451 .widget-title,
+                     body.category-1451 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #b23a66;
+                    }
+                    .cat-links .at-cat-item-1451:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1452{
+                    background: #2d0f2a!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1452 .widget-title::before,
+                    body.category-1452 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #2d0f2a;
+                    }
+                    
+                    .at-cat-color-wrap-1452 .widget-title,
+                     body.category-1452 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #2d0f2a;
+                    }
+                    .cat-links .at-cat-item-1452:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1453{
+                    background: #1c4556!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1453 .widget-title::before,
+                    body.category-1453 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #1c4556;
+                    }
+                    
+                    .at-cat-color-wrap-1453 .widget-title,
+                     body.category-1453 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #1c4556;
+                    }
+                    .cat-links .at-cat-item-1453:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1454{
+                    background: #236b6b!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1454 .widget-title::before,
+                    body.category-1454 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #236b6b;
+                    }
+                    
+                    .at-cat-color-wrap-1454 .widget-title,
+                     body.category-1454 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #236b6b;
+                    }
+                    .cat-links .at-cat-item-1454:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1455{
+                    background: #143d24!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1455 .widget-title::before,
+                    body.category-1455 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #143d24;
+                    }
+                    
+                    .at-cat-color-wrap-1455 .widget-title,
+                     body.category-1455 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #143d24;
+                    }
+                    .cat-links .at-cat-item-1455:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1456{
+                    background: #832b84!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1456 .widget-title::before,
+                    body.category-1456 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #832b84;
+                    }
+                    
+                    .at-cat-color-wrap-1456 .widget-title,
+                     body.category-1456 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #832b84;
+                    }
+                    .cat-links .at-cat-item-1456:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1457{
+                    background: #1a4f47!important;
+                    color : #fff!important;
+                    }
+                    
+                    .at-cat-color-wrap-1457 .widget-title::before,
+                    body.category-1457 .page-header .page-title::before
+                    {
+                     border-bottom: 7px solid #1a4f47;
+                    }
+                    
+                    .at-cat-color-wrap-1457 .widget-title,
+                     body.category-1457 .page-header .page-title
+                    {
+                     border-bottom: 1px solid #1a4f47;
+                    }
+                    .cat-links .at-cat-item-1457:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1459{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1459:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1460{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1460:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1461{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1461:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1462{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1462:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1463{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1463:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1464{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1464:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1465{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1465:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1466{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1466:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1467{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1467:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1468{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1468:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1469{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1469:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1471{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1471:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1473{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1473:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1474{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1474:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1475{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1475:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1476{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1476:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1477{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1477:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1478{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1478:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1479{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1479:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1480{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1480:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1481{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1481:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1482{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1482:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1483{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1483:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1654{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1654:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1655{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1655:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1656{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1656:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1657{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1657:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1658{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1658:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1659{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1659:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1660{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-1660:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2056{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2056:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2059{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2059:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2067{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2067:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2082{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2082:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2084{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2084:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2086{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2086:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2091{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2091:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2096{
+                    background: #4db2ec!important;
+                    color : #fff!important;
+                    }
+                    
+                    .cat-links .at-cat-item-2096:hover{
+                    background: #2d2d2d!important;
+                    color : #fff!important;
+                    }
+                    
+</style>
+<script type="text/javascript" src="./Server Sent Events with Spring - Push Notifications - Roy Tutorials_files/jquery.js.download" id="jquery-core-js"></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://www.roytuts.com/wp-content/themes/supermag/assets/library/html5shiv/html5shiv.min.js?ver=3.7.3' id='html5-js'></script>
+<![endif]-->
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://www.roytuts.com/wp-content/themes/supermag/assets/library/respond/respond.min.js?ver=1.1.2' id='respond-js'></script>
+<![endif]-->
+<link rel="https://api.w.org/" href="https://www.roytuts.com/wp-json/"><link rel="alternate" type="application/json" href="https://www.roytuts.com/wp-json/wp/v2/posts/2975"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.roytuts.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.roytuts.com/wp-includes/wlwmanifest.xml">
+<meta name="generator" content="WordPress 5.5.1">
+<link rel="shortlink" href="https://www.roytuts.com/?p=2975">
+<link rel="alternate" type="application/json+oembed" href="https://www.roytuts.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.roytuts.com%2Fserver-sent-events-spring-push-notifications%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.roytuts.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.roytuts.com%2Fserver-sent-events-spring-push-notifications%2F&amp;format=xml">
+<script>
+			document.documentElement.className = document.documentElement.className.replace( 'no-js', 'js' );
+		</script>
+<style>
+			.no-js img.lazyload { display: none; }
+			figure.wp-block-image img.lazyloading { min-width: 150px; }
+							.lazyload, .lazyloading { opacity: 0; }
+				.lazyloaded {
+					opacity: 1;
+					transition: opacity 400ms;
+					transition-delay: 0ms;
+				}
+					</style>
+<style id="theia-sticky-sidebar-stylesheet-TSS">.theiaStickySidebar:after {content: ""; display: table; clear: both;}</style><style>._3emE9--dark-theme .-S-tR--ff-downloader{background:rgba(30,30,30,.93);border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);color:#fff}._3emE9--dark-theme .-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn{background:#3d4b52}._3emE9--dark-theme .-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn:hover{background:#131415}._3emE9--dark-theme .-S-tR--ff-downloader ._10vpG--footer{background:rgba(30,30,30,.93)}._2mDEx--white-theme .-S-tR--ff-downloader{background:#fff;border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);color:#314c75}._2mDEx--white-theme .-S-tR--ff-downloader ._6_Mtt--header{font-weight:700}._2mDEx--white-theme .-S-tR--ff-downloader ._2dFLA--container ._2bWNS--notice{border:0;color:rgba(0,0,0,.88)}._2mDEx--white-theme .-S-tR--ff-downloader ._10vpG--footer{background:#fff}.-S-tR--ff-downloader{display:block;overflow:hidden;position:fixed;bottom:20px;right:7.1%;width:330px;height:180px;background:rgba(30,30,30,.93);border-radius:2px;color:#fff;z-index:99999999;border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);transition:.5s}.-S-tR--ff-downloader._3M7UQ--minimize{height:62px}.-S-tR--ff-downloader._3M7UQ--minimize .nxuu4--file-info,.-S-tR--ff-downloader._3M7UQ--minimize ._6_Mtt--header{display:none}.-S-tR--ff-downloader ._6_Mtt--header{padding:10px;font-size:17px;font-family:sans-serif}.-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn{float:right;background:#f1ecec;height:20px;width:20px;text-align:center;padding:2px;margin-top:-10px;cursor:pointer}.-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn:hover{background:#e2dede}.-S-tR--ff-downloader ._13XQ2--error{color:red;padding:10px;font-size:12px;line-height:19px}.-S-tR--ff-downloader ._2dFLA--container{position:relative;height:100%}.-S-tR--ff-downloader ._2dFLA--container .nxuu4--file-info{padding:6px 15px 0;font-family:sans-serif}.-S-tR--ff-downloader ._2dFLA--container .nxuu4--file-info div{margin-bottom:5px;width:100%;overflow:hidden}.-S-tR--ff-downloader ._2dFLA--container ._2bWNS--notice{margin-top:21px;font-size:11px}.-S-tR--ff-downloader ._10vpG--footer{width:100%;bottom:0;position:absolute;font-weight:700}.-S-tR--ff-downloader ._10vpG--footer ._2V73d--loader{-webkit-animation:n0BD1--rotation 3.5s linear forwards;animation:n0BD1--rotation 3.5s linear forwards;position:absolute;top:-120px;left:calc(50% - 35px);border-radius:50%;border:5px solid #fff;border-top-color:#a29bfe;height:70px;width:70px;display:flex;justify-content:center;align-items:center}.-S-tR--ff-downloader ._10vpG--footer ._24wjw--loading-bar{width:100%;height:18px;background:#dfe6e9;border-radius:5px}.-S-tR--ff-downloader ._10vpG--footer ._24wjw--loading-bar ._1FVu9--progress-bar{height:100%;background:#8bc34a;border-radius:5px}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status{margin-top:10px}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status ._1XilH--state{float:left;font-size:.9em;letter-spacing:1pt;text-transform:uppercase;width:100px;height:20px;position:relative}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status ._1jiaj--percentage{float:right}</style></head>
+<body class="post-template-default single single-post postid-2975 single-format-standard boxed-layout single-large-image left-logo-right-ainfo both-sidebar at-sticky-sidebar" style="transform: none;">
+<div id="page" class="hfeed site" style="transform: none;">
+<a class="skip-link screen-reader-text" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#content" title="link">Skip to content</a>
+<header id="masthead" class="site-header" role="banner">
+<div class="top-header-section clearfix">
+<div class="wrapper">
+<div class="right-header float-right">
+<div class="socials">
+<a href="https://www.facebook.com/soumitrablog" aria-label="Facebook" rel="noreferrer" class="facebook" data-title="Facebook" target="_blank">
+<span class="font-icon-social-facebook"><i class="fa fa-facebook"></i></span>
+</a>
+<a href="https://twitter.com/roytuts" aria-label="Twitter" rel="noreferrer" class="twitter" data-title="Twitter" target="_blank">
+<span class="font-icon-social-twitter"><i class="fa fa-twitter"></i></span>
+</a>
+<a href="https://www.youtube.com/channel/UCMysotNzptWegWBSY9lox_g/videos?view_as=subscriber" aria-label="Youtube" rel="noreferrer" class="youtube" data-title="Youtube" target="_blank">
+<span class="font-icon-social-youtube"><i class="fa fa-youtube"></i></span>
+</a>
+<a href="https://www.linkedin.com/in/soumitra-sarkar-80ba0328/" aria-label="LinkedIn" rel="noreferrer" class="linkedin" data-title="LinkedIn" target="_blank">
+<span class="font-icon-social-linkedin"><i class="fa fa-linkedin"></i></span>
+</a>
+<a href="https://github.com/roytuts" aria-label="Github" rel="noreferrer" class="github" data-title="Github" target="_blank">
+<span class="font-icon-social-github"><i class="fa fa-github"></i></span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="header-wrapper clearfix">
+<div class="header-container">
+<div class="wrapper">
+<div class="site-branding clearfix">
+<div class="site-logo float-left">
+<p class="site-title">
+<a href="https://www.roytuts.com/" rel="home">Roy Tutorials</a>
+</p>
+<p class="site-description">Technical… Theoretical… Practical…</p>
+</div>
+<div class="header-ainfo float-right">
+<aside id="custom_html-41" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-8323278707142241" data-ad-slot="2465299219"></ins></div></aside> </div>
+<div class="clearfix"></div>
+</div>
+</div>
+<nav id="site-navigation" class="main-navigation supermag-enable-sticky-menu clearfix" role="navigation" style="position: fixed; right: 0px; left: 0px; top: 0px; z-index: 999; width: 1230px;">
+<div class="header-main-menu wrapper clearfix">
+<div class="home-icon">
+<a href="https://www.roytuts.com/" title="Roy Tutorials"><i class="fa fa-home"></i></a>
+</div>
+<a aria-label="Search" class="fa fa-search icon-menu search-icon-menu" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#"></a><div class="menu-search-toggle"><div class="menu-search-inner"><div class="search-block">
+<form action="https://www.roytuts.com/" class="searchform" id="searchform" method="get" role="search">
+<div>
+<label for="menu-search" class="screen-reader-text"></label>
+<input type="text" placeholder="Search" id="menu-search" name="s" value="">
+<button class="fa fa-search" type="submit" id="searchsubmit"></button>
+</div>
+</form>
+</div></div></div> </div>
+<div class="responsive-slick-menu wrapper clearfix"></div>
+</nav>
+
+</div>
+
+</div>
+
+</header>
+
+<div class="wrapper content-wrapper clearfix" style="transform: none;">
+<div id="content" class="site-content" style="transform: none;">
+<div id="primary-wrap" class="clearfix" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px; transform: none;"> 
+
+<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;"><div class="breadcrumbs init-animate clearfix"><span class="breadcrumb">You are here</span><div id="supermag-breadcrumbs" class="clearfix"><div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs" itemprop="breadcrumb"><ul class="trail-items" itemscope="" itemtype="http://schema.org/BreadcrumbList"><meta name="numberOfItems" content="4"><meta name="itemListOrder" content="Ascending"><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem" class="trail-item trail-begin"><a href="https://www.roytuts.com/" rel="home" itemprop="item"><span itemprop="name">Home</span></a><meta itemprop="position" content="1"></li><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem" class="trail-item"><a href="https://www.roytuts.com/category/spring/" itemprop="item"><span itemprop="name">Spring</span></a><meta itemprop="position" content="2"></li><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem" class="trail-item"><a href="https://www.roytuts.com/category/spring/spring-boot/" itemprop="item"><span itemprop="name">Spring Boot</span></a><meta itemprop="position" content="3"></li><li class="trail-item trail-end"><span><span>Server Sent Events with Spring – Push Notifications</span></span></li></ul></div></div></div><div id="primary" class="content-area">
+<main id="main" class="site-main" role="main">
+<article id="post-2975" class="post-2975 post type-post status-publish format-standard hentry category-spring-boot category-spring-rest tag-event">
+<header class="entry-header">
+<h1 class="entry-title">Server Sent Events with Spring – Push Notifications</h1>
+<div class="entry-meta">
+<span class="posted-on"><a href="https://www.roytuts.com/server-sent-events-spring-push-notifications/" rel="bookmark"><i class="fa fa-calendar"></i>19th May, 2020</a></span><span class="byline"> <span><a href="https://www.roytuts.com/author/sugr86/"><i class="fa fa-user"></i>Soumitra</a></span></span> </div>
+</header>
+
+<div class="entry-content">
+<h2>Introduction </h2>
+<p>We have seen a popular choice for sending real time data from server to client in web application is using WebSocket in our previous tutorials <a rel="noopener noreferrer" href="https://www.roytuts.com/messaging-with-stomp-over-websockets-using-spring-and-activemq/" target="_blank">Messaging with STOMP over WebSockets using Spring, Angular 8 and ActiveMQ</a>&nbsp;and <a rel="noopener noreferrer" href="https://www.roytuts.com/spring-boot-websocket-angularjs-gradle-example/" target="_blank">Spring Boot WebSocket Angular 8 Gradle Example</a>. </p>
+<p>WebSocket opens bidirectional connections between server and client. So both server and client can send messages.</p>
+<p>Sometimes we face situations, where the application needs only one way communication, i.e., sending data from server to the client and for this Spring provides a simpler solution using Server Sent Events (SSE).</p>
+<p>SSE is a technology that allows you to stream data from server to the browser&nbsp; (Push Notifications) within one HTTP connection in one direction. </p>
+<p>For example, pushing stock price changes in real-time or showing progress of long-running process or real time showing of cricket or football scores on display board etc.</p>
+<h2>Browser Support</h2>
+<p>SSE are supported in most modern browsers. Only Microsoft’s IE and Edge browsers do not have a built in implementation.</p>
+<p>But there is a way out because Server-Sent Events uses common HTTP connections and can therefore be implemented with the following libraries to support IE and Edge browsers.</p>
+<span id="more-2975"></span>
+<p>https://github.com/remy/polyfills/blob/master/EventSource.js by Remy Sharp</p>
+<p>https://github.com/rwldrn/jquery.eventsource by Rick Waldron</p>
+<p>https://github.com/amvtek/EventSource by AmvTek</p>
+<p>https://github.com/Yaffle/EventSource by Yaffle</p>
+<h2>Prerequisites</h2>
+<p>Eclipse 4.12, Java 12 or 8, Gradle 5.6, Spring Boot 2.1.8</p>
+<h2>Example with Source Code</h2>
+<p>In the following example we create a Spring Boot application that sends the random Java’s UUID message with timestamp as SSE to the client.</p>
+<p>Ideally you would like to display some meaningful data to the client.</p>
+<p>So you can always modify the code as per your requirements.</p>
+<p>The client is a simple html page that displays these values.</p>
+<p>Spring introduced support for Server Sent Events(SSE) with version 4.2 (Spring Boot 1.3).</p>
+<h3>Creating Gradle Project</h3>
+<p>First create a Gradle based spring boot project – <strong>spring-sse-push-notifications</strong>.</p>
+<p>The <strong>build.gradle</strong> script is given with the following content.</p>
+<pre class="wp-block-code"><code>buildscript {
+	ext {
+		springBootVersion = '2.1.8.RELEASE'
+	}
+	
+    repositories {
+    	mavenLocal()
+    	mavenCentral()
+    }
+    
+    dependencies {
+    	classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 12
+targetCompatibility = 12
+
+repositories {
+	mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+}</code></pre>
+<h3>Enabling Scheduler in Service Class</h3>
+<p>Once the project is created and build is done, create below a scheduled service that reads the greeting message every five seconds and creates an instance of the Notification class and publishes it with Spring’s event bus infrastructure.</p>
+<p>You may change the fixed rate according to your application’s requirements.</p>
+<pre class="wp-block-code"><code>package com.roytuts.spring.sse.push.notification.service;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+
+@Service
+@EnableScheduling
+public class SsePushNotificationService {
+
+	final DateFormat DATE_FORMATTER = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+	final List&lt;SseEmitter&gt; emitters = new CopyOnWriteArrayList&lt;&gt;();
+
+	public void addEmitter(final SseEmitter emitter) {
+		emitters.add(emitter);
+	}
+
+	public void removeEmitter(final SseEmitter emitter) {
+		emitters.remove(emitter);
+	}
+
+	@Async
+	@Scheduled(fixedRate = 5000)
+	public void doNotify() throws IOException {
+		List&lt;SseEmitter&gt; deadEmitters = new ArrayList&lt;&gt;();
+		emitters.forEach(emitter -&gt; {
+			try {
+				emitter.send(SseEmitter.event()
+						.data(DATE_FORMATTER.format(new Date()) + " : " + UUID.randomUUID().toString()));
+			} catch (Exception e) {
+				deadEmitters.add(emitter);
+			}
+		});
+		emitters.removeAll(deadEmitters);
+	}
+
+}</code></pre>
+<p>We are pushing data every 5 secs to the client. </p>
+<p><strong>Related Posts:</strong></p>
+<ul><li><a rel="noopener noreferrer" href="https://www.roytuts.com/spring-asynchronous-execution-using-async/" target="_blank">Spring Asynchronous Execution using @Async</a></li><li><a rel="noreferrer noopener" href="https://www.roytuts.com/messaging-with-stomp-over-websockets-using-spring-and-activemq/" target="_blank">Messaging with STOMP over WebSockets using Spring, Angular 8 and ActiveMQ</a></li><li><a rel="noreferrer noopener" href="https://www.roytuts.com/spring-boot-websocket-angularjs-gradle-example/" target="_blank">Spring Boot WebSocket Angular 8 Gradle Example</a> </li></ul>
+<h3>Spring Rest Controller</h3>
+<p>Next we create a REST Controller class that handles the <code>EventSource</code> GET request from the client.</p>
+<p>The GET handler needs to return an instance of the class <code>SseEmitter</code>.</p>
+<p>Each client connection is represented with its own instance of <code>SseEmitter</code>.</p>
+<p>Spring does not give you tools to manage these <code>SseEmitter</code> instances. In this application we store the emitters in a simple list(emitters) and add handlers to the emitter’s completion and timeout event to remove them from the list.</p>
+<pre class="wp-block-code"><code>package com.roytuts.spring.sse.push.notification.controller;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+
+import com.roytuts.spring.sse.push.notification.service.SsePushNotificationService;
+
+@RestController
+public class SsePushNotificationRestController {
+
+	@Autowired
+	SsePushNotificationService service;
+
+	final List&lt;SseEmitter&gt; emitters = new CopyOnWriteArrayList&lt;&gt;();
+
+	@GetMapping("/notification")
+	public ResponseEntity&lt;SseEmitter&gt; doNotify() throws InterruptedException, IOException {
+		final SseEmitter emitter = new SseEmitter();
+		service.addEmitter(emitter);
+		service.doNotify();
+		emitter.onCompletion(() -&gt; service.removeEmitter(emitter));
+		emitter.onTimeout(() -&gt; service.removeEmitter(emitter));
+		return new ResponseEntity&lt;&gt;(emitter, HttpStatus.OK);
+	}
+
+}</code></pre>
+<h3>Configuring application.properties</h3>
+<p>By default, Spring Boot with the embedded Tomcat server keeps the SSE HTTP connection open for 60 seconds. An application can change that with an entry to the <code>application.properties</code> file</p>
+<p><code>spring.mvc.async.request-timeout=-1 #-1 means infinity</code></p>
+<h3>Spring Boot Main Class</h3>
+<p>Create below main class to start up the application into embedded Tomcat server.</p>
+<pre class="wp-block-code"><code>package com.roytuts.spring.sse.push.notification;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication(scanBasePackages = "com.roytuts.spring.sse.push.notification")
+public class SpringSsePushNotificationApp {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringSsePushNotificationApp.class, args);
+	}
+
+}</code></pre>
+<h2>Client Part – UI</h2>
+<p>The client opens the SSE connection with</p>
+<p><code>const eventSource = new EventSource('http://localhost:9999/notification');</code>
+</p>
+<p>and registers a message listener that parses the JSON and sets the innerHTML of three dom elements to display the received data.</p>
+<p>The whole HTML file with content is given below:</p>
+<pre class="wp-block-code"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Spring SSE Push Notifications&lt;/title&gt;
+&lt;script&gt;
+	function initialize() {
+		const eventSource = new EventSource('http://localhost:8080/notification');
+		eventSource.onmessage = e =&gt; {
+			const msg = e.data;
+			document.getElementById("greet").innerHTML = msg;
+		};
+		eventSource.onopen = e =&gt; console.log('open');
+		eventSource.onerror = e =&gt; {
+			if (e.readyState == EventSource.CLOSED) {
+				console.log('close');
+			}
+			else {
+				console.log(e);
+			}
+		};
+		eventSource.addEventListener('second', function(e) {
+			console.log('second', e.data);
+		}, false);
+	}
+	window.onload = initialize;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div id="greet"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h2>Testing the Application</h2>
+<p>Now while you run the client file in any modern browsers like Chrome, Firefox etc. then you may face below problem</p>
+<blockquote class="wp-block-quote"><p><em>Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource spring boot html</em></p></blockquote>
+<h3>Adding CORS</h3>
+<p>To resolve this issue add <code>@CrossOrigins(origins = "*")</code> to the REST controller class to allow from all host. If you want to restrict to a particular host, for example, <strong>http://www.example.com</strong> then you need to put as <code>@CrossOrigins(origins = "http://www.example.com")</code>.</p>
+<p>The revised REST controller class is given as:</p>
+<pre class="wp-block-code"><code>package com.roytuts.spring.sse.push.notification.controller;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+
+import com.roytuts.spring.sse.push.notification.service.SsePushNotificationService;
+
+@RestController
+@CrossOrigin(origins = "*")
+public class SsePushNotificationRestController {
+
+	@Autowired
+	SsePushNotificationService service;
+
+	final List&lt;SseEmitter&gt; emitters = new CopyOnWriteArrayList&lt;&gt;();
+
+	@GetMapping("/notification")
+	public ResponseEntity&lt;SseEmitter&gt; doNotify() throws InterruptedException, IOException {
+		final SseEmitter emitter = new SseEmitter();
+		service.addEmitter(emitter);
+		service.doNotify();
+		emitter.onCompletion(() -&gt; service.removeEmitter(emitter));
+		emitter.onTimeout(() -&gt; service.removeEmitter(emitter));
+		return new ResponseEntity&lt;&gt;(emitter, HttpStatus.OK);
+	}
+
+}</code></pre>
+<p>Refresh the client file in browser, you will get uninterrupted message being displayed.</p>
+<p>That’s all. Hope you got an idea on Server Sent Events with Spring example.</p>
+<h2>Source Code</h2>
+<p><a rel="noreferrer noopener" aria-label="download source code (opens in a new tab)" href="https://github.com/roytuts/spring-boot/tree/master/spring-sse-push-notifications" target="_blank">download source code</a></p>
+<p>Thanks for reading.</p>
+<div style="text-align: center;">
+
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-8323278707142241" data-ad-slot="3267000129"></ins>
+</div>
+</div>
+<footer class="entry-footer featured-desc">
+<span class="cat-links"><i class="fa fa-folder-o"></i><a href="https://www.roytuts.com/category/spring/spring-boot/" rel="category tag">Spring Boot</a>, <a href="https://www.roytuts.com/category/spring/spring-rest/" rel="category tag">Spring REST</a></span><span class="tags-links"><i class="fa fa-tags"></i><a href="https://www.roytuts.com/tag/event/" rel="tag">Event</a></span> </footer>
+</article>
+<nav class="navigation post-navigation" role="navigation" aria-label="Posts">
+<h2 class="screen-reader-text">Post navigation</h2>
+<div class="nav-links"><div class="nav-previous"><a href="https://www.roytuts.com/react-application-windows/" rel="prev">Create React JS Application on Windows</a></div><div class="nav-next"><a href="https://www.roytuts.com/josephus-problem/" rel="next">Solving Josephus Problem using PHP</a></div></div>
+</nav> <h2 class="widget-title">
+Related posts </h2>
+<ul class="featured-entries-col featured-entries featured-col-posts featured-related-posts">
+<li class="acme-col-3">
+<figure class="widget-image">
+<a href="https://www.roytuts.com/docker-compose-dockerizing-spring-boot-microservices-mysql-app/">
+</a><div class="no-image-widgets"><a href="https://www.roytuts.com/docker-compose-dockerizing-spring-boot-microservices-mysql-app/">
+</a><h2 class="caption-title"><a href="https://www.roytuts.com/docker-compose-dockerizing-spring-boot-microservices-mysql-app/"></a><a href="https://www.roytuts.com/docker-compose-dockerizing-spring-boot-microservices-mysql-app/" rel="bookmark">Docker Compose – Dockerizing Spring Boot Microservices MySQL App</a></h2> </div>
+
+</figure>
+<div class="featured-desc">
+<div class="above-entry-meta">
+<span>
+<a href="https://www.roytuts.com/2020/09/06/">
+<i class="fa fa-calendar"></i>
+6th Sep, 2020 </a>
+</span>
+<span>
+<a href="https://www.roytuts.com/author/sugr86/" title="Soumitra">
+<i class="fa fa-user"></i>
+Soumitra </a>
+</span>
+<span>
+<a href="https://www.roytuts.com/docker-compose-dockerizing-spring-boot-microservices-mysql-app/#respond"><i class="fa fa-comment"></i>0</a> </span>
+</div>
+<a href="https://www.roytuts.com/docker-compose-dockerizing-spring-boot-microservices-mysql-app/">
+<h4 class="title">
+Docker Compose – Dockerizing Spring Boot Microservices MySQL App </h4>
+</a>
+<div class="details">Introduction Here I am going to show you how to use docker compose for dockerizing Spring...</div> <div class="below-entry-meta">
+<span class="cat-links"><a class="at-cat-item-2086" href="https://www.roytuts.com/category/docker/" rel="category tag">Docker</a>&nbsp;<a class="at-cat-item-1456" href="https://www.roytuts.com/category/web-tech/microservices/" rel="category tag">Microservices</a>&nbsp;<a class="at-cat-item-288" href="https://www.roytuts.com/category/database/mysql/" rel="category tag">MySQL</a>&nbsp;<a class="at-cat-item-1467" href="https://www.roytuts.com/category/spring/spring-boot/" rel="category tag">Spring Boot</a>&nbsp;</span> </div>
+</div>
+</li>
+<li class="acme-col-3">
+<figure class="widget-image">
+<a href="https://www.roytuts.com/how-to-trace-microservices-logs-with-spring-cloud-sleuth-zipkin/">
+</a><div class="no-image-widgets"><a href="https://www.roytuts.com/how-to-trace-microservices-logs-with-spring-cloud-sleuth-zipkin/">
+</a><h2 class="caption-title"><a href="https://www.roytuts.com/how-to-trace-microservices-logs-with-spring-cloud-sleuth-zipkin/"></a><a href="https://www.roytuts.com/how-to-trace-microservices-logs-with-spring-cloud-sleuth-zipkin/" rel="bookmark">How to Trace Microservices Logs with Spring Cloud Sleuth and Zipkin</a></h2> </div>
+
+</figure>
+<div class="featured-desc">
+<div class="above-entry-meta">
+<span>
+<a href="https://www.roytuts.com/2020/08/26/">
+<i class="fa fa-calendar"></i>
+26th Aug, 2020 </a>
+</span>
+<span>
+<a href="https://www.roytuts.com/author/sugr86/" title="Soumitra">
+<i class="fa fa-user"></i>
+Soumitra </a>
+</span>
+<span>
+<a href="https://www.roytuts.com/how-to-trace-microservices-logs-with-spring-cloud-sleuth-zipkin/#respond"><i class="fa fa-comment"></i>0</a> </span>
+</div>
+<a href="https://www.roytuts.com/how-to-trace-microservices-logs-with-spring-cloud-sleuth-zipkin/">
+<h4 class="title">
+How to Trace Microservices Logs with Spring Cloud Sleuth and Zipkin </h4>
+</a>
+<div class="details">Introduction Here I am going to explain how to trace Spring Boot Microservices logs with Spring...</div> <div class="below-entry-meta">
+<span class="cat-links"><a class="at-cat-item-1456" href="https://www.roytuts.com/category/web-tech/microservices/" rel="category tag">Microservices</a>&nbsp;<a class="at-cat-item-1467" href="https://www.roytuts.com/category/spring/spring-boot/" rel="category tag">Spring Boot</a>&nbsp;<a class="at-cat-item-2082" href="https://www.roytuts.com/category/spring/spring-cloud/" rel="category tag">Spring Cloud</a>&nbsp;</span> </div>
+</div>
+</li>
+<li class="acme-col-3">
+<figure class="widget-image">
+<a href="https://www.roytuts.com/create-build-package-and-run-spring-boot-application-with-docker-in-centos/">
+</a><div class="no-image-widgets"><a href="https://www.roytuts.com/create-build-package-and-run-spring-boot-application-with-docker-in-centos/">
+</a><h2 class="caption-title"><a href="https://www.roytuts.com/create-build-package-and-run-spring-boot-application-with-docker-in-centos/"></a><a href="https://www.roytuts.com/create-build-package-and-run-spring-boot-application-with-docker-in-centos/" rel="bookmark">Create, Build, Package and Run Spring Boot Application with Docker in CentOS 7</a></h2>  </div>
+
+</figure>
+<div class="featured-desc">
+<div class="above-entry-meta">
+<span>
+<a href="https://www.roytuts.com/2020/08/21/">
+<i class="fa fa-calendar"></i>
+21st Aug, 2020 </a>
+</span>
+<span>
+<a href="https://www.roytuts.com/author/sugr86/" title="Soumitra">
+<i class="fa fa-user"></i>
+Soumitra </a>
+</span>
+<span>
+<a href="https://www.roytuts.com/create-build-package-and-run-spring-boot-application-with-docker-in-centos/#respond"><i class="fa fa-comment"></i>0</a> </span>
+</div>
+<a href="https://www.roytuts.com/create-build-package-and-run-spring-boot-application-with-docker-in-centos/">
+<h4 class="title">
+Create, Build, Package and Run Spring Boot Application with Docker in CentOS 7 </h4>
+</a>
+<div class="details">Introduction Here in this tutorial I am going to show you how to create a simple...</div> <div class="below-entry-meta">
+<span class="cat-links"><a class="at-cat-item-2086" href="https://www.roytuts.com/category/docker/" rel="category tag">Docker</a>&nbsp;<a class="at-cat-item-1467" href="https://www.roytuts.com/category/spring/spring-boot/" rel="category tag">Spring Boot</a>&nbsp;</span> </div>
+</div>
+</li>
+</ul>
+<div class="clearfix"></div>
+<div id="comments" class="comments-area">
+<h2 class="comments-title">
+11 Thoughts to “Server Sent Events with Spring – Push Notifications” </h2>
+<ol class="comment-list">
+<li class="comment even thread-even depth-1" id="comment-7880">
+<div id="div-comment-7880" class="comment-body clearfix">
+<div class="comment-author vcard">
+<cite class="fn">omari amal</cite> </div>
+<div class="comment-meta commentmetadata">
+<a href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7880">
+<i class="fa fa-clock-o"></i>
+16th Dec, 2019 at 4:03 pm </a>
+</div>
+<p>It s realy helpful. Thank you</p>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7880" data-commentid="7880" data-postid="2975" data-belowelement="div-comment-7880" data-respondelement="respond" data-replyto="Reply to omari amal" aria-label="Reply to omari amal">Reply</a> </div>
+</div>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-7652">
+<div id="div-comment-7652" class="comment-body clearfix">
+<div class="comment-author vcard">
+<cite class="fn">Alevi</cite> </div>
+<div class="comment-meta commentmetadata">
+<a href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7652">
+<i class="fa fa-clock-o"></i>
+18th Oct, 2019 at 9:32 am </a>
+ </div>
+<p>Thankyou for the awesome post. Helped.</p>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7652" data-commentid="7652" data-postid="2975" data-belowelement="div-comment-7652" data-respondelement="respond" data-replyto="Reply to Alevi" aria-label="Reply to Alevi">Reply</a> </div>
+</div>
+</li>
+<li class="comment even thread-even depth-1 parent" id="comment-7576">
+<div id="div-comment-7576" class="comment-body clearfix">
+<div class="comment-author vcard">
+<cite class="fn">keyur bhatt</cite> </div>
+<div class="comment-meta commentmetadata">
+<a href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7576">
+<i class="fa fa-clock-o"></i>
+19th Apr, 2019 at 9:43 am </a>
+</div>
+<p>I am getting compile time error of send is not not found in emitter(NotificationService) !<br>
+I have just copy pasted your code though also it’s not working.</p>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7576" data-commentid="7576" data-postid="2975" data-belowelement="div-comment-7576" data-respondelement="respond" data-replyto="Reply to keyur bhatt" aria-label="Reply to keyur bhatt">Reply</a> </div>
+</div>
+<ol class="children">
+<li class="comment byuser comment-author-sugr86 bypostauthor odd alt depth-2" id="comment-7577">
+<div id="div-comment-7577" class="comment-body clearfix">
+<div class="comment-author vcard">
+<cite class="fn"><a href="http://www.jeejava.com/" rel="external nofollow ugc" class="url">Soumitra Roy Sarkar</a></cite> </div>
+<div class="comment-meta commentmetadata">
+<a href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7577">
+<i class="fa fa-clock-o"></i>
+19th Apr, 2019 at 12:40 pm </a>
+</div>
+<p>do you have the exact version of dependencies in build file?</p>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7577" data-commentid="7577" data-postid="2975" data-belowelement="div-comment-7577" data-respondelement="respond" data-replyto="Reply to Soumitra Roy Sarkar" aria-label="Reply to Soumitra Roy Sarkar">Reply</a> </div>
+</div>
+</li>
+</ol>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id="comment-7575">
+<div id="div-comment-7575" class="comment-body clearfix">
+<div class="comment-author vcard">
+<cite class="fn">Filip Antic</cite> </div>
+<div class="comment-meta commentmetadata">
+<a href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7575">
+<i class="fa fa-clock-o"></i>
+23rd Mar, 2019 at 10:20 am </a>
+</div>
+<p>Hello,<br>
+I’m getting all the time ” GET <a href="http://localhost:9999/notification" rel="nofollow ugc">http://localhost:9999/notification</a> net::ERR_CONNECTION_REFUSED ”<br>
+Do you know why?</p>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7575" data-commentid="7575" data-postid="2975" data-belowelement="div-comment-7575" data-respondelement="respond" data-replyto="Reply to Filip Antic" aria-label="Reply to Filip Antic">Reply</a> </div>
+</div>
+</li>
+<li class="comment odd alt thread-even depth-1" id="comment-7574">
+ <div id="div-comment-7574" class="comment-body clearfix">
+<div class="comment-author vcard">
+<cite class="fn">Guram</cite> </div>
+<div class="comment-meta commentmetadata">
+<a href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7574">
+<i class="fa fa-clock-o"></i>
+18th Jan, 2019 at 7:00 pm </a>
+</div>
+<p>Thank you very much for solution, i want to mention i had problem with class name<br>
+spring has similar file CorsFilter, so just append file name</p>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7574" data-commentid="7574" data-postid="2975" data-belowelement="div-comment-7574" data-respondelement="respond" data-replyto="Reply to Guram" aria-label="Reply to Guram">Reply</a> </div>
+</div>
+</li>
+<li class="comment even thread-odd thread-alt depth-1 parent" id="comment-7572">
+<div id="div-comment-7572" class="comment-body clearfix">
+<div class="comment-author vcard">
+<cite class="fn">Mathieu</cite> </div>
+<div class="comment-meta commentmetadata">
+<a href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7572">
+<i class="fa fa-clock-o"></i>
+15th Nov, 2018 at 3:42 pm </a>
+</div>
+<p>Thank you nice tutorial, it helped me to understand better SSE<br>
+I had couple of errors which google had a fixed like timeout or 406 error<br>
+You can go pass easily Cross issue in simply adding @CrossOrigin on the controller by the way :)<br>
+I had none of the issue of the previous comments.</p>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7572" data-commentid="7572" data-postid="2975" data-belowelement="div-comment-7572" data-respondelement="respond" data-replyto="Reply to Mathieu" aria-label="Reply to Mathieu">Reply</a> </div>
+</div>
+<ol class="children">
+<li class="comment odd alt depth-2" id="comment-7578">
+<div id="div-comment-7578" class="comment-body clearfix">
+<div class="comment-author vcard">
+<cite class="fn">Anonymous</cite> </div>
+<div class="comment-meta commentmetadata">
+<a href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7578">
+<i class="fa fa-clock-o"></i>
+30th Jun, 2019 at 6:41 am </a>
+</div>
+<p>I am getting http 406 error. Can you please share how did you fix that?</p>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7578" data-commentid="7578" data-postid="2975" data-belowelement="div-comment-7578" data-respondelement="respond" data-replyto="Reply to Anonymous" aria-label="Reply to Anonymous">Reply</a> </div>
+</div>
+</li>
+</ol>
+</li>
+<li class="comment even thread-even depth-1 parent" id="comment-7571">
+<div id="div-comment-7571" class="comment-body clearfix">
+<div class="comment-author vcard">
+<cite class="fn">WKH</cite> </div>
+<div class="comment-meta commentmetadata">
+<a href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7571">
+<i class="fa fa-clock-o"></i>
+22nd Oct, 2018 at 8:01 am </a>
+</div>
+<p>I am getting this error “org.springframework.web.HttpMediaTypeNotAcceptableException: Could not find acceptable representation”. Antoine can help?</p>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7571" data-commentid="7571" data-postid="2975" data-belowelement="div-comment-7571" data-respondelement="respond" data-replyto="Reply to WKH" aria-label="Reply to WKH">Reply</a> </div>
+</div>
+<ol class="children">
+<li class="comment odd alt depth-2" id="comment-7573">
+<div id="div-comment-7573" class="comment-body clearfix">
+<div class="comment-author vcard">
+<cite class="fn">Anonymous Anonymous</cite> </div>
+<div class="comment-meta commentmetadata">
+<a href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7573">
+<i class="fa fa-clock-o"></i>
+17th Jan, 2019 at 10:53 am </a>
+</div>
+<p>trying adding<br>
+spring.mvc.async.request-timeout=-1<br>
+in your application.properties.</p>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7573" data-commentid="7573" data-postid="2975" data-belowelement="div-comment-7573" data-respondelement="respond" data-replyto="Reply to Anonymous Anonymous" aria-label="Reply to Anonymous Anonymous">Reply</a> </div>
+</div>
+</li>
+</ol>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id="comment-7570">
+<div id="div-comment-7570" class="comment-body clearfix">
+<div class="comment-author vcard">
+<cite class="fn">Anurag Thenge</cite> </div>
+<div class="comment-meta commentmetadata">
+<a href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7570">
+<i class="fa fa-clock-o"></i>
+27th Sep, 2018 at 1:57 pm </a>
+</div>
+<p>hello ,<br>
+I am getting GET <a href="http://localhost:8088/notification" rel="nofollow ugc">http://localhost:8088/notification</a> 403 () error in web browser’s console. I am using google chrome Version 68.0.3440.106 (Official Build) (64-bit).<br>
+When I hit ” <a href="http://localhost:8088/notification" rel="nofollow ugc">http://localhost:8088/notification</a>” on browser’s address bar I get “Invalid CORS request” written in page. So please let me know if I am missing any configuration.</p>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#comment-7570" data-commentid="7570" data-postid="2975" data-belowelement="div-comment-7570" data-respondelement="respond" data-replyto="Reply to Anurag Thenge" aria-label="Reply to Anurag Thenge">Reply</a> </div>
+</div>
+</li>
+</ol>
+<div id="respond" class="comment-respond">
+<h3 id="reply-title" class="comment-reply-title"><span></span> Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://www.roytuts.com/server-sent-events-spring-push-notifications/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://www.roytuts.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><p class="comment-form-comment"><label for="comment"></label> <textarea id="comment" name="comment" placeholder="Comment" cols="45" rows="8" aria-required="true"></textarea></p><p class="comment-form-author"><label for="author"></label><input id="author" name="author" type="text" placeholder="Name" value="" size="30" aria-required="true"></p>
+<p class="comment-form-email"><label for="email"></label> <input id="email" name="email" type="email" value="" placeholder="Email" size="30" aria-required="true"></p>
+<p class="comment-form-url"><label for="url"></label> <input id="url" name="url" placeholder="Website URL" type="url" value="" size="30"></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Add Comment"> <input type="hidden" name="comment_post_ID" value="2975" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p></form> </div>
+</div> </main>
+</div><div id="secondary-left" class="widget-area sidebar secondary-sidebar float-right" role="complementary" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+
+<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;"><div id="sidebar-section-top" class="widget-area sidebar clearfix">
+<aside id="categories-2" class="widget widget_categories"><h3 class="widget-title"><span>Categories</span></h3>
+<ul>
+<li class="cat-item cat-item-1657"><a href="https://www.roytuts.com/category/build-tool/">Build Tool</a>
+<ul class="children">
+<li class="cat-item cat-item-1441"><a href="https://www.roytuts.com/category/build-tool/gradle/">Gradle</a>
+</li>
+<li class="cat-item cat-item-1446"><a href="https://www.roytuts.com/category/build-tool/jenkins/">Jenkins</a>
+</li>
+<li class="cat-item cat-item-1455"><a href="https://www.roytuts.com/category/build-tool/maven/">Maven</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-1168"><a href="https://www.roytuts.com/category/c/">C</a>
+<ul class="children">
+<li class="cat-item cat-item-1167"><a href="https://www.roytuts.com/category/c/array/">Array</a>
+</li>
+<li class="cat-item cat-item-1166"><a href="https://www.roytuts.com/category/c/data-structure/">Data Structure</a>
+</li>
+<li class="cat-item cat-item-1271"><a href="https://www.roytuts.com/category/c/search-algorithm/">Search Algorithm</a>
+</li>
+<li class="cat-item cat-item-1276"><a href="https://www.roytuts.com/category/c/sort-algorithm/">Sort Algorithm</a>
+</li>
+<li class="cat-item cat-item-1249"><a href="https://www.roytuts.com/category/c/structure/">Structure</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-1655"><a href="https://www.roytuts.com/category/database/">Database</a>
+<ul class="children">
+<li class="cat-item cat-item-1443"><a href="https://www.roytuts.com/category/database/hsql/">HSQL</a>
+</li>
+<li class="cat-item cat-item-1453"><a href="https://www.roytuts.com/category/database/liquibase/">Liquibase</a>
+</li>
+<li class="cat-item cat-item-1363"><a href="https://www.roytuts.com/category/database/mongodb/">MongoDB</a>
+</li>
+<li class="cat-item cat-item-288"><a href="https://www.roytuts.com/category/database/mysql/">MySQL</a>
+</li>
+<li class="cat-item cat-item-1396"><a href="https://www.roytuts.com/category/database/sqlite/">SQLite</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-2086"><a href="https://www.roytuts.com/category/docker/">Docker</a>
+</li>
+<li class="cat-item cat-item-1144"><a href="https://www.roytuts.com/category/email/">Email</a>
+</li>
+<li class="cat-item cat-item-1656"><a href="https://www.roytuts.com/category/file/">File</a>
+<ul class="children">
+<li class="cat-item cat-item-1439"><a href="https://www.roytuts.com/category/file/excel/">Excel</a>
+</li>
+<li class="cat-item cat-item-1412"><a href="https://www.roytuts.com/category/file/file-download/">File Download</a>
+</li>
+<li class="cat-item cat-item-930"><a href="https://www.roytuts.com/category/file/file-upload/">File Upload</a>
+</li>
+<li class="cat-item cat-item-1483"><a href="https://www.roytuts.com/category/file/word/">Word</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-1440"><a href="https://www.roytuts.com/category/git/">Git</a>
+</li>
+<li class="cat-item cat-item-1424"><a href="https://www.roytuts.com/category/graphql/">GraphQL</a>
+</li>
+<li class="cat-item cat-item-1445"><a href="https://www.roytuts.com/category/java/">Java</a>
+<ul class="children">
+<li class="cat-item cat-item-1434"><a href="https://www.roytuts.com/category/java/activiti/">Activiti</a>
+</li>
+<li class="cat-item cat-item-1435"><a href="https://www.roytuts.com/category/java/code-quality/">Code Quality</a>
+</li>
+<li class="cat-item cat-item-1436"><a href="https://www.roytuts.com/category/java/cucumber/">Cucumber</a>
+</li>
+<li class="cat-item cat-item-1437"><a href="https://www.roytuts.com/category/java/design-pattern/">Design Pattern</a>
+</li>
+<li class="cat-item cat-item-1438"><a href="https://www.roytuts.com/category/java/drools/">Drools</a>
+</li>
+<li class="cat-item cat-item-1451"><a href="https://www.roytuts.com/category/java/junit/">JUnit</a>
+</li>
+<li class="cat-item cat-item-1454"><a href="https://www.roytuts.com/category/java/log4j/">Log4J</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-1447"><a href="https://www.roytuts.com/category/jms/">JMS</a>
+<ul class="children">
+<li class="cat-item cat-item-1433"><a href="https://www.roytuts.com/category/jms/activemq/">ActiveMQ</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-2067"><a href="https://www.roytuts.com/category/kafka/">Kafka</a>
+</li>
+<li class="cat-item cat-item-1452"><a href="https://www.roytuts.com/category/kotlin/">Kotlin</a>
+</li>
+<li class="cat-item cat-item-2059"><a href="https://www.roytuts.com/category/mosquitto/">Mosquitto</a>
+</li>
+<li class="cat-item cat-item-1457"><a href="https://www.roytuts.com/category/mule-esb/">Mule ESB</a>
+</li>
+<li class="cat-item cat-item-1660"><a href="https://www.roytuts.com/category/orm/">ORM</a>
+<ul class="children">
+<li class="cat-item cat-item-1442"><a href="https://www.roytuts.com/category/orm/hibernate/">Hibernate</a>
+</li>
+<li class="cat-item cat-item-1448"><a href="https://www.roytuts.com/category/orm/jpa/">JPA</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-7"><a href="https://www.roytuts.com/category/php/">PHP</a>
+<ul class="children">
+<li class="cat-item cat-item-11"><a href="https://www.roytuts.com/category/php/codeigniter/">Codeigniter</a>
+</li>
+<li class="cat-item cat-item-1219"><a href="https://www.roytuts.com/category/php/wordpress/">Wordpress</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-1372"><a href="https://www.roytuts.com/category/python/">Python</a>
+<ul class="children">
+<li class="cat-item cat-item-1388"><a href="https://www.roytuts.com/category/python/django/">Django</a>
+</li>
+<li class="cat-item cat-item-1425"><a href="https://www.roytuts.com/category/python/flask/">Flask</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-1460"><a href="https://www.roytuts.com/category/security/">Security</a>
+<ul class="children">
+<li class="cat-item cat-item-134"><a href="https://www.roytuts.com/category/security/htaccess/">htaccess</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-1463"><a href="https://www.roytuts.com/category/siteminder/">Siteminder</a>
+</li>
+<li class="cat-item cat-item-1654"><a href="https://www.roytuts.com/category/spring/">Spring</a>
+<ul class="children">
+<li class="cat-item cat-item-1465"><a href="https://www.roytuts.com/category/spring/spring-aop/">Spring AOP</a>
+</li>
+<li class="cat-item cat-item-1466"><a href="https://www.roytuts.com/category/spring/spring-batch/">Spring Batch</a>
+</li>
+<li class="cat-item cat-item-1467"><a href="https://www.roytuts.com/category/spring/spring-boot/">Spring Boot</a>
+</li>
+<li class="cat-item cat-item-2082"><a href="https://www.roytuts.com/category/spring/spring-cloud/">Spring Cloud</a>
+</li>
+<li class="cat-item cat-item-1468"><a href="https://www.roytuts.com/category/spring/spring-core/">Spring Core</a>
+</li>
+<li class="cat-item cat-item-1469"><a href="https://www.roytuts.com/category/spring/spring-email/">Spring Email</a>
+</li>
+<li class="cat-item cat-item-2056"><a href="https://www.roytuts.com/category/spring/spring-integration/">Spring Integration</a>
+</li>
+<li class="cat-item cat-item-1471"><a href="https://www.roytuts.com/category/spring/spring-jdbc/">Spring JDBC</a>
+</li>
+<li class="cat-item cat-item-1473"><a href="https://www.roytuts.com/category/spring/spring-jpa/">Spring JPA</a>
+</li>
+<li class="cat-item cat-item-1474"><a href="https://www.roytuts.com/category/spring/spring-mvc/">Spring MVC</a>
+</li>
+<li class="cat-item cat-item-1475"><a href="https://www.roytuts.com/category/spring/spring-rest/">Spring REST</a>
+</li>
+<li class="cat-item cat-item-1476"><a href="https://www.roytuts.com/category/spring/spring-security/">Spring Security</a>
+</li>
+<li class="cat-item cat-item-1477"><a href="https://www.roytuts.com/category/spring/spring-soap/">Spring SOAP</a>
+</li>
+<li class="cat-item cat-item-1478"><a href="https://www.roytuts.com/category/spring/spring-transaction/">Spring Transaction</a>
+</li>
+<li class="cat-item cat-item-1479"><a href="https://www.roytuts.com/category/spring/spring-webflux/">Spring WebFlux</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-2096"><a href="https://www.roytuts.com/category/twitter4j/">Twitter4j</a>
+</li>
+<li class="cat-item cat-item-1297"><a href="https://www.roytuts.com/category/unix/">Unix</a>
+</li>
+<li class="cat-item cat-item-1659"><a href="https://www.roytuts.com/category/web-tech/">Web Tech</a>
+<ul class="children">
+<li class="cat-item cat-item-109"><a href="https://www.roytuts.com/category/web-tech/javascript/">JavaScript</a>
+<ul class="children">
+<li class="cat-item cat-item-115"><a href="https://www.roytuts.com/category/web-tech/javascript/ajax/">AJAX</a>
+</li>
+<li class="cat-item cat-item-1234"><a href="https://www.roytuts.com/category/web-tech/javascript/angular/">Angular</a>
+</li>
+<li class="cat-item cat-item-1427"><a href="https://www.roytuts.com/category/web-tech/javascript/bootstrap/">Bootstrap</a>
+</li>
+<li class="cat-item cat-item-67"><a href="https://www.roytuts.com/category/web-tech/javascript/jquery/">jQuery</a>
+</li>
+<li class="cat-item cat-item-1343"><a href="https://www.roytuts.com/category/web-tech/javascript/nodejs/">NodeJS</a>
+</li>
+<li class="cat-item cat-item-1331"><a href="https://www.roytuts.com/category/web-tech/javascript/react-js/">React JS</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-1449"><a href="https://www.roytuts.com/category/web-tech/jsf/">JSF</a>
+</li>
+<li class="cat-item cat-item-1450"><a href="https://www.roytuts.com/category/web-tech/jsp/">JSP</a>
+</li>
+<li class="cat-item cat-item-1456"><a href="https://www.roytuts.com/category/web-tech/microservices/">Microservices</a>
+</li>
+<li class="cat-item cat-item-1459"><a href="https://www.roytuts.com/category/web-tech/reactive-programming/">Reactive Programming</a>
+</li>
+<li class="cat-item cat-item-2091"><a href="https://www.roytuts.com/category/web-tech/selenium/">Selenium</a>
+</li>
+<li class="cat-item cat-item-1461"><a href="https://www.roytuts.com/category/web-tech/server/">Server</a>
+</li>
+<li class="cat-item cat-item-1462"><a href="https://www.roytuts.com/category/web-tech/servlet/">Servlet</a>
+</li>
+<li class="cat-item cat-item-1480"><a href="https://www.roytuts.com/category/web-tech/struts/">Struts</a>
+</li>
+<li class="cat-item cat-item-1658"><a href="https://www.roytuts.com/category/web-tech/web-services/">Web Services</a>
+<ul class="children">
+<li class="cat-item cat-item-30"><a href="https://www.roytuts.com/category/web-tech/web-services/rest/">REST</a>
+<ul class="children">
+<li class="cat-item cat-item-2084"><a href="https://www.roytuts.com/category/web-tech/web-services/rest/rest-assured/">Rest Assured</a>
+</li>
+<li class="cat-item cat-item-1481"><a href="https://www.roytuts.com/category/web-tech/web-services/rest/swagger/">Swagger</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-1464"><a href="https://www.roytuts.com/category/web-tech/web-services/soap/">SOAP</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-1482"><a href="https://www.roytuts.com/category/web-tech/websocket/">WebSocket</a>
+</li>
+</ul>
+</li>
+<li class="cat-item cat-item-355"><a href="https://www.roytuts.com/category/xampp/">xampp</a>
+</li>
+</ul>
+</aside><aside id="custom_html-40" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget">
+<ins class="adsbygoogle" style="display:inline-block;width:250px;height:250px" data-ad-client="ca-pub-8323278707142241" data-ad-slot="8757023854"></ins></div></aside> </div></div></div></div></div> <div id="secondary-right" class="widget-area sidebar secondary-sidebar float-right" role="complementary" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 719.2px;">
+
+<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: fixed; transform: translateY(0px); width: 292.5px; left: 1052.1px; top: 0px;"><div id="sidebar-section-top" class="widget-area sidebar clearfix">
+<aside id="custom_html-42" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget">
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-8323278707142241" data-ad-slot="9988566013"></ins></div></aside>
+<aside id="recent-posts-2" class="widget widget_recent_entries">
+<h3 class="widget-title"><span>Recent Posts</span></h3>
+<ul>
+<li>
+<a href="https://www.roytuts.com/docker-compose-dockerizing-nodejs-mysql-rest-api-crud-example/">Docker Compose – Dockerizing Nodejs MySQL REST API CRUD Example</a>
+</li>
+<li>
+<a href="https://www.roytuts.com/nodejs-express-mysql-rest-api-crud-example/">NodeJS Express MySQL REST API CRUD Example</a>
+</li>
+<li>
+<a href="https://www.roytuts.com/docker-compose-dockerizing-spring-boot-microservices-mysql-app/">Docker Compose – Dockerizing Spring Boot Microservices MySQL App</a>
+</li>
+<li>
+<a href="https://www.roytuts.com/docker-compose-dockerizing-flask-mysql-app/">Docker Compose – Dockerizing Flask MySQL App</a>
+</li>
+<li>
+<a href="https://www.roytuts.com/how-to-trace-microservices-logs-with-spring-cloud-sleuth-zipkin/">How to Trace Microservices Logs with Spring Cloud Sleuth and Zipkin</a>
+</li>
+</ul>
+</aside><aside id="custom_html-39" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget">
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8323278707142241" data-ad-slot="3942032414" data-ad-format="auto"  ="" data-full-width-responsive="true"></ins></div></aside> </div></div></div>
+</div>
+</div>
+<aside id="tag_cloud-2" class="widget widget_tag_cloud"><h3 class="widget-title"><span>Tags</span></h3><div class="tagcloud"><a href="https://www.roytuts.com/tag/apache-poi/" class="tag-cloud-link tag-link-1496 tag-link-position-1" style="font-size: 17.333333333333pt;" aria-label="apache poi (26 items)">apache poi</a>
+<a href="https://www.roytuts.com/tag/array/" class="tag-cloud-link tag-link-1497 tag-link-position-2" style="font-size: 8.9722222222222pt;" aria-label="Array (9 items)">Array</a>
+<a href="https://www.roytuts.com/tag/authentication/" class="tag-cloud-link tag-link-1428 tag-link-position-3" style="font-size: 17.916666666667pt;" aria-label="Authentication (28 items)">Authentication</a>
+<a href="https://www.roytuts.com/tag/cache/" class="tag-cloud-link tag-link-1402 tag-link-position-4" style="font-size: 11.111111111111pt;" aria-label="Cache (12 items)">Cache</a>
+<a href="https://www.roytuts.com/tag/chart/" class="tag-cloud-link tag-link-589 tag-link-position-5" style="font-size: 12.861111111111pt;" aria-label="Chart (15 items)">Chart</a>
+<a href="https://www.roytuts.com/tag/codeigniter-file-upload/" class="tag-cloud-link tag-link-798 tag-link-position-6" style="font-size: 11.111111111111pt;" aria-label="Codeigniter File Upload (12 items)">Codeigniter File Upload</a>
+<a href="https://www.roytuts.com/tag/connector/" class="tag-cloud-link tag-link-1513 tag-link-position-7" style="font-size: 10.527777777778pt;" aria-label="Connector (11 items)">Connector</a>
+<a href="https://www.roytuts.com/tag/container/" class="tag-cloud-link tag-link-2087 tag-link-position-8" style="font-size: 8pt;" aria-label="container (8 items)">container</a>
+<a href="https://www.roytuts.com/tag/csv/" class="tag-cloud-link tag-link-1515 tag-link-position-9" style="font-size: 12.472222222222pt;" aria-label="CSV (14 items)">CSV</a>
+<a href="https://www.roytuts.com/tag/date/" class="tag-cloud-link tag-link-1409 tag-link-position-10" style="font-size: 8.9722222222222pt;" aria-label="Date (9 items)">Date</a>
+<a href="https://www.roytuts.com/tag/exception/" class="tag-cloud-link tag-link-1527 tag-link-position-11" style="font-size: 11.888888888889pt;" aria-label="Exception (13 items)">Exception</a>
+<a href="https://www.roytuts.com/tag/file/" class="tag-cloud-link tag-link-1382 tag-link-position-12" style="font-size: 22pt;" aria-label="file (46 items)">file</a>
+<a href="https://www.roytuts.com/tag/flask-rest/" class="tag-cloud-link tag-link-1426 tag-link-position-13" style="font-size: 11.111111111111pt;" aria-label="Flask REST (12 items)">Flask REST</a>
+<a href="https://www.roytuts.com/tag/foreach/" class="tag-cloud-link tag-link-1531 tag-link-position-14" style="font-size: 8.9722222222222pt;" aria-label="foreach (9 items)">foreach</a>
+<a href="https://www.roytuts.com/tag/image/" class="tag-cloud-link tag-link-1543 tag-link-position-15" style="font-size: 12.472222222222pt;" aria-label="image (14 items)">image</a>
+<a href="https://www.roytuts.com/tag/image-upload/" class="tag-cloud-link tag-link-801 tag-link-position-16" style="font-size: 8.9722222222222pt;" aria-label="Image Upload (9 items)">Image Upload</a>
+<a href="https://www.roytuts.com/tag/java-8/" class="tag-cloud-link tag-link-1551 tag-link-position-17" style="font-size: 12.861111111111pt;" aria-label="Java 8 (15 items)">Java 8</a>
+<a href="https://www.roytuts.com/tag/java-coding/" class="tag-cloud-link tag-link-1552 tag-link-position-18" style="font-size: 15.583333333333pt;" aria-label="Java Coding (21 items)">Java Coding</a>
+<a href="https://www.roytuts.com/tag/java-design-pattern/" class="tag-cloud-link tag-link-1553 tag-link-position-19" style="font-size: 16.75pt;" aria-label="Java Design Pattern (24 items)">Java Design Pattern</a>
+<a href="https://www.roytuts.com/tag/java-faqs/" class="tag-cloud-link tag-link-1554 tag-link-position-20" style="font-size: 12.472222222222pt;" aria-label="Java FAQs (14 items)">Java FAQs</a>
+<a href="https://www.roytuts.com/tag/jax-ws/" class="tag-cloud-link tag-link-1557 tag-link-position-21" style="font-size: 13.444444444444pt;" aria-label="jax-ws (16 items)">jax-ws</a>
+<a href="https://www.roytuts.com/tag/jaxb/" class="tag-cloud-link tag-link-1558 tag-link-position-22" style="font-size: 8pt;" aria-label="jaxb (8 items)">jaxb</a>
+<a href="https://www.roytuts.com/tag/jersey/" class="tag-cloud-link tag-link-1563 tag-link-position-23" style="font-size: 10.527777777778pt;" aria-label="Jersey (11 items)">Jersey</a>
+<a href="https://www.roytuts.com/tag/join-table/" class="tag-cloud-link tag-link-1569 tag-link-position-24" style="font-size: 8.9722222222222pt;" aria-label="Join table (9 items)">Join table</a>
+<a href="https://www.roytuts.com/tag/jpa-annotation/" class="tag-cloud-link tag-link-1570 tag-link-position-25" style="font-size: 9.75pt;" aria-label="JPA Annotation (10 items)">JPA Annotation</a>
+<a href="https://www.roytuts.com/tag/jpa-query/" class="tag-cloud-link tag-link-1572 tag-link-position-26" style="font-size: 9.75pt;" aria-label="JPA Query (10 items)">JPA Query</a>
+<a href="https://www.roytuts.com/tag/jquery-ajax/" class="tag-cloud-link tag-link-105 tag-link-position-27" style="font-size: 9.75pt;" aria-label="jQuery AJAX (10 items)">jQuery AJAX</a>
+<a href="https://www.roytuts.com/tag/list/" class="tag-cloud-link tag-link-1582 tag-link-position-28" style="font-size: 11.111111111111pt;" aria-label="List (12 items)">List</a>
+<a href="https://www.roytuts.com/tag/log/" class="tag-cloud-link tag-link-1586 tag-link-position-29" style="font-size: 11.111111111111pt;" aria-label="Log (12 items)">Log</a>
+<a href="https://www.roytuts.com/tag/mail/" class="tag-cloud-link tag-link-1411 tag-link-position-30" style="font-size: 15.583333333333pt;" aria-label="Mail (21 items)">Mail</a>
+<a href="https://www.roytuts.com/tag/map/" class="tag-cloud-link tag-link-1591 tag-link-position-31" style="font-size: 16.361111111111pt;" aria-label="Map (23 items)">Map</a>
+<a href="https://www.roytuts.com/tag/mule/" class="tag-cloud-link tag-link-1597 tag-link-position-32" style="font-size: 16.944444444444pt;" aria-label="Mule (25 items)">Mule</a>
+<a href="https://www.roytuts.com/tag/pdf/" class="tag-cloud-link tag-link-1604 tag-link-position-33" style="font-size: 12.861111111111pt;" aria-label="pdf (15 items)">pdf</a>
+<a href="https://www.roytuts.com/tag/sort/" class="tag-cloud-link tag-link-1279 tag-link-position-34" style="font-size: 9.75pt;" aria-label="Sort (10 items)">Sort</a>
+<a href="https://www.roytuts.com/tag/spring-annotation/" class="tag-cloud-link tag-link-1623 tag-link-position-35" style="font-size: 9.75pt;" aria-label="Spring Annotation (10 items)">Spring Annotation</a>
+<a href="https://www.roytuts.com/tag/spring-bean/" class="tag-cloud-link tag-link-1624 tag-link-position-36" style="font-size: 10.527777777778pt;" aria-label="spring bean (11 items)">spring bean</a>
+<a href="https://www.roytuts.com/tag/spring-datasource/" class="tag-cloud-link tag-link-1626 tag-link-position-37" style="font-size: 12.472222222222pt;" aria-label="Spring datasource (14 items)">Spring datasource</a>
+<a href="https://www.roytuts.com/tag/spring-jdbctemplate/" class="tag-cloud-link tag-link-1627 tag-link-position-38" style="font-size: 14.027777777778pt;" aria-label="Spring JdbcTemplate (17 items)">Spring JdbcTemplate</a>
+<a href="https://www.roytuts.com/tag/spring-xml-config/" class="tag-cloud-link tag-link-1633 tag-link-position-39" style="font-size: 9.75pt;" aria-label="Spring XML Config (10 items)">Spring XML Config</a>
+<a href="https://www.roytuts.com/tag/string/" class="tag-cloud-link tag-link-1638 tag-link-position-40" style="font-size: 8.9722222222222pt;" aria-label="String (9 items)">String</a>
+<a href="https://www.roytuts.com/tag/template/" class="tag-cloud-link tag-link-1414 tag-link-position-41" style="font-size: 9.75pt;" aria-label="Template (10 items)">Template</a>
+<a href="https://www.roytuts.com/tag/thread/" class="tag-cloud-link tag-link-1642 tag-link-position-42" style="font-size: 12.861111111111pt;" aria-label="Thread (15 items)">Thread</a>
+<a href="https://www.roytuts.com/tag/validation/" class="tag-cloud-link tag-link-602 tag-link-position-43" style="font-size: 14.805555555556pt;" aria-label="Validation (19 items)">Validation</a>
+<a href="https://www.roytuts.com/tag/webapp/" class="tag-cloud-link tag-link-1648 tag-link-position-44" style="font-size: 11.111111111111pt;" aria-label="WebApp (12 items)">WebApp</a>
+<a href="https://www.roytuts.com/tag/xml/" class="tag-cloud-link tag-link-1367 tag-link-position-45" style="font-size: 11.111111111111pt;" aria-label="xml (12 items)">xml</a></div>
+</aside> <div class="clearfix"></div>
+<footer id="colophon" class="site-footer" role="contentinfo">
+<div class="footer-wrapper">
+<div class="top-bottom wrapper">
+<div id="footer-top">
+<div class="footer-columns">
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="wrapper footer-copyright border text-center">
+<p>
+Copyright © 2014 - 2020&nbsp;&nbsp;<span style="color: red">Do Not Reproduce Content</span> </p>
+<div class="site-info">
+<a href="https://www.roytuts.com/privacy">Privacy</a>
+<span class="sep"> | </span>
+<a href="https://www.roytuts.com/terms-conditions">Terms &amp; Conditions</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script type="text/javascript" src="./Server Sent Events with Spring - Push Notifications - Roy Tutorials_files/smush-lazy-load.min.js.download" id="smush-lazy-load-js"></script>
+<script type="text/javascript" src="./Server Sent Events with Spring - Push Notifications - Roy Tutorials_files/theia-sticky-sidebar.min.js.download" id="theia-sticky-sidebar-js"></script>
+<script type="text/javascript" src="./Server Sent Events with Spring - Push Notifications - Roy Tutorials_files/comment-reply.min.js.download" id="comment-reply-js"></script>
+<script type="text/javascript" src="./Server Sent Events with Spring - Push Notifications - Roy Tutorials_files/supermag-custom.js.download" id="supermag-custom-child-js"></script>
+<script type="text/javascript" src="./Server Sent Events with Spring - Push Notifications - Roy Tutorials_files/wp-embed.min.js.download" id="wp-embed-js"></script>
+
+<script async="" src="./Server Sent Events with Spring - Push Notifications - Roy Tutorials_files/f.txt"></script>
+<script>
+        (adsbygoogle = window.adsbygoogle || []).onload = function () {
+                [].forEach.call(document.getElementsByClassName('adsbygoogle'), function () {
+                        adsbygoogle.push({});
+                });
+        };
+</script>
+&nbsp;
+<script async="" src="./Server Sent Events with Spring - Push Notifications - Roy Tutorials_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-57525136-1');
+</script>
+
+
+
+
+</body></html>

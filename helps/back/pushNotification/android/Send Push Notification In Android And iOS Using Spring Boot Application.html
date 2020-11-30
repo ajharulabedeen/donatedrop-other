@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<!-- saved from url=(0113)https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/ -->
+<html lang="en-US" class="js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="stndz-style"></style>
+
+  <meta name="robots" content="index, follow">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://www.oodlestechnologies.com/wp-content/themes/oodlestechnologies/assets/images/social_icon/Favicon.png" sizes="32x32">
+<link rel="icon" href="https://www.oodlestechnologies.com/wp-content/themes/oodlestechnologies/assets/images/social_icon/Favicon.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://www.oodlestechnologies.com/wp-content/themes/oodlestechnologies/assets/images/social_icon/Favicon.png">
+<meta name="msapplication-TileImage" content="https://www.oodlestechnologies.com/wp-content/themes/oodlestechnologies/assets/images/social_icon/Favicon.png">
+
+   <!-- <link rel="profile" href="http://gmpg.org/xfn/11"> -->
+  
+	
+  <link type="text/css" media="all" href="./Send Push Notification In Android And iOS Using Spring Boot Application_files/autoptimize_77c7e029ca4bcd07dad2cf1ed07f8b85.css" rel="stylesheet"><title>Send Push Notification In Android And iOS Using Spring Boot Application</title><meta name="title" content="Send Push Notification In Android And iOS Using Spring Boot Application">
+      <meta name="description" content="To send a push notification in android device we are going to use FCM and for iOS device we will use APNS."><link rel="canonical" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/"><meta property="og:title" content="Send Push Notification In Android And iOS Using Spring Boot Application">
+      <meta property="og:description" content="To send a push notification in android device we are going to use FCM and for iOS device we will use APNS."><meta property="og:site_name" content=" Oodlestechnologies"><meta property="og:url" content="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/"><meta property="article:section" content="Uncategorized"><meta name="twitter:title" content="Send Push Notification In Android And iOS Using Spring Boot Application">
+      <meta name="twitter:description" content="To send a push notification in android device we are going to use FCM and for iOS device we will use APNS.">
+      <meta name="twitter:card" content="summary_large_image"><link rel="dns-prefetch" href="https://s.w.org/"><link rel="alternate" type="application/rss+xml" title="Send Push Notification In Android And iOS Using Spring Boot Application" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/feed/">
+	<script type="text/javascript" async="" src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/analytics.js.download"></script><script async="" src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/qevents.js.download"></script><script src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/2277937685791236" async=""></script><script async="" src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/fbevents.js.download"></script><script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+
+<!-- This site is optimized with the Yoast SEO plugin v11.5 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Oodlestechnologies » Feed" href="https://www.oodlestechnologies.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Oodlestechnologies » Comments Feed" href="https://www.oodlestechnologies.com/comments/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.oodlestechnologies.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.1"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
+		
+	
+
+
+
+
+
+
+
+
+
+
+<!--[if lt IE 10]>
+<link rel='stylesheet' id='twentysixteen-ie-css'  href='https://www.oodlestechnologies.com/wp-content/themes/oodlestechnologies/assets/css/ie.css?ver=1.1556536791' type='text/css' media='all' />
+<![endif]-->
+
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentysixteen-ie8-css'  href='https://www.oodlestechnologies.com/wp-content/themes/oodlestechnologies/assets/css/ie8.css?ver=1.1556536791' type='text/css' media='all' />
+<![endif]-->
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='twentysixteen-ie7-css'  href='https://www.oodlestechnologies.com/wp-content/themes/oodlestechnologies/assets/css/ie7.css?ver=1.1556536791' type='text/css' media='all' />
+<![endif]-->
+
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var custom_blog_fun_obj = {"ajaxurl":"https:\/\/www.oodlestechnologies.com\/wp-admin\/admin-ajax.php","site_url":"https:\/\/www.oodlestechnologies.com\/wp-content\/themes\/oodlestechnologies"};
+/* ]]> */
+</script>
+
+
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://www.oodlestechnologies.com/wp-content/themes/oodlestechnologies/assets/js/html5.js?ver=1.1556536791'></script>
+<![endif]-->
+
+
+<link rel="https://api.w.org/" href="https://www.oodlestechnologies.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.oodlestechnologies.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.oodlestechnologies.com/wp-includes/wlwmanifest.xml"> 
+
+<link rel="shortlink" href="https://www.oodlestechnologies.com/?p=221">
+		
+				
+		 
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+  
+  <!-- <script async type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-11294399-3"></script> -->
+
+
+
+
+
+<script type="application/ld+json">
+  { "@context" : "http://schema.org",
+    "@type" : "Organization",
+    "name" : "[Oodles Technologies Private Limited]",
+    "logo" : "//www.oodlestechnologies.com/assets/dashboard/front/logo.png",
+    "url" : "//www.oodlestechnologies.com/",
+    "sameAs" : [
+    "https://twitter.com/[oodlestech]",
+    "https://www.facebook.com/[OodlesTech]",
+    "https://www.linkedin.com/company/[oodles-technologies-pvt-ltd-74175685]",
+    "https://plus.google.com/[+Oodlestechnologies]/posts"
+  ]
+  }
+  </script>
+
+<script type="application/ld+json">{
+    "@context" : "https://schema.org/",
+    "@type": "EmployerAggregateRating",
+    "itemReviewed": {
+    "@type": "Organization",
+    "name" : "Oodles Technologies",
+    "sameAs" : "https://www.oodlestechnologies.com/"
+    },
+    "ratingValue": "4.8",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount" : "628"
+  }</script>
+
+
+    <!-- DO NOT MODIFY -->
+
+
+
+<script>
+var clickedScripts= 0;
+document.addEventListener('mousemove', callFaceandQuoraScripts, false);
+window.addEventListener('scroll', callFaceandQuoraScripts);
+document.addEventListener("click", callFaceandQuoraScripts);
+
+ function callFaceandQuoraScripts()
+ {
+  if(clickedScripts < 1){
+    clickedScripts++;
+    var head = document.getElementsByTagName('head')[0];
+    // load google tag master
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-11294399-3';
+    head.appendChild(script);
+      
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-11294399-3');
+
+  // <!-- Facebook Pixel Code -->
+
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+ fbq('init', '2277937685791236');
+fbq('track', 'PageView');
+fbq('track', 'Contact');
+// <!-- End Facebook Pixel Code -->
+
+
+// <!-- Quora Pixel Code (JS Helper) -->
+
+!function(q,e,v,n,t,s){if(q.qp) return; n=q.qp=function(){n.qp?n.qp.apply(n,arguments):n.queue.push(arguments);}; n.queue=[];t=document.createElement(e);t.async=!0;t.src=v; s=document.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);}(window, 'script', 'https://a.quora.com/qevents.js');
+qp('init', '344b07040eba46539358d2920a9126f2');
+qp('track', 'ViewContent');
+// <!-- End of Quora Pixel Code -->
+
+
+
+}
+
+ }
+</script>
+
+
+
+<noscript>
+ <img height="1" width="1"
+src="https://www.facebook.com/tr?id=2277937685791236&ev=PageView
+&noscript=1"/>
+<img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/344b07040eba46539358d2920a9126f2/pixel?tag=ViewContent&noscript=1"/>
+</noscript>
+
+
+
+
+<!-- End Facebook Pixel Code -->
+
+
+
+<!-- google review code start here -->
+<script type="application/ld+json">
+{ "@context": "http://schema.org",
+"@type": "Organization",
+"name": "Oodles Technologies",
+"aggregateRating":
+{"@type": "AggregateRating",
+"ratingValue": "5",
+"reviewCount": "842"
+}
+}</script>
+
+<style>._3emE9--dark-theme .-S-tR--ff-downloader{background:rgba(30,30,30,.93);border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);color:#fff}._3emE9--dark-theme .-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn{background:#3d4b52}._3emE9--dark-theme .-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn:hover{background:#131415}._3emE9--dark-theme .-S-tR--ff-downloader ._10vpG--footer{background:rgba(30,30,30,.93)}._2mDEx--white-theme .-S-tR--ff-downloader{background:#fff;border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);color:#314c75}._2mDEx--white-theme .-S-tR--ff-downloader ._6_Mtt--header{font-weight:700}._2mDEx--white-theme .-S-tR--ff-downloader ._2dFLA--container ._2bWNS--notice{border:0;color:rgba(0,0,0,.88)}._2mDEx--white-theme .-S-tR--ff-downloader ._10vpG--footer{background:#fff}.-S-tR--ff-downloader{display:block;overflow:hidden;position:fixed;bottom:20px;right:7.1%;width:330px;height:180px;background:rgba(30,30,30,.93);border-radius:2px;color:#fff;z-index:99999999;border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);transition:.5s}.-S-tR--ff-downloader._3M7UQ--minimize{height:62px}.-S-tR--ff-downloader._3M7UQ--minimize .nxuu4--file-info,.-S-tR--ff-downloader._3M7UQ--minimize ._6_Mtt--header{display:none}.-S-tR--ff-downloader ._6_Mtt--header{padding:10px;font-size:17px;font-family:sans-serif}.-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn{float:right;background:#f1ecec;height:20px;width:20px;text-align:center;padding:2px;margin-top:-10px;cursor:pointer}.-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn:hover{background:#e2dede}.-S-tR--ff-downloader ._13XQ2--error{color:red;padding:10px;font-size:12px;line-height:19px}.-S-tR--ff-downloader ._2dFLA--container{position:relative;height:100%}.-S-tR--ff-downloader ._2dFLA--container .nxuu4--file-info{padding:6px 15px 0;font-family:sans-serif}.-S-tR--ff-downloader ._2dFLA--container .nxuu4--file-info div{margin-bottom:5px;width:100%;overflow:hidden}.-S-tR--ff-downloader ._2dFLA--container ._2bWNS--notice{margin-top:21px;font-size:11px}.-S-tR--ff-downloader ._10vpG--footer{width:100%;bottom:0;position:absolute;font-weight:700}.-S-tR--ff-downloader ._10vpG--footer ._2V73d--loader{-webkit-animation:n0BD1--rotation 3.5s linear forwards;animation:n0BD1--rotation 3.5s linear forwards;position:absolute;top:-120px;left:calc(50% - 35px);border-radius:50%;border:5px solid #fff;border-top-color:#a29bfe;height:70px;width:70px;display:flex;justify-content:center;align-items:center}.-S-tR--ff-downloader ._10vpG--footer ._24wjw--loading-bar{width:100%;height:18px;background:#dfe6e9;border-radius:5px}.-S-tR--ff-downloader ._10vpG--footer ._24wjw--loading-bar ._1FVu9--progress-bar{height:100%;background:#8bc34a;border-radius:5px}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status{margin-top:10px}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status ._1XilH--state{float:left;font-size:.9em;letter-spacing:1pt;text-transform:uppercase;width:100px;height:20px;position:relative}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status ._1jiaj--percentage{float:right}</style><script type="text/javascript" src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/js"></script></head>
+
+<body class="page-template page-template-page-templates page-template-custom-blog page-template-page-templatescustom-blog-php page page-id-221 wp-custom-logo wp-embed-responsive Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application">
+
+<header>
+<nav class="navbar navbar-expand-md navbar-light header_background show_sticky" id="oodles_header">
+<div class="container-fluid header_width">
+  <a href="https://www.oodlestechnologies.com/" id="header_sticky_des" class="navbar-brand pb-2 logo"> <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/Oodles-Technologies-2.svg" class="technologie_header_logo" alt="logo"></a> 
+  
+  <button class="navbar-toggler mobile-menu-toggler" type="button" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" name="menu-opener" data-toggle="modal" data-target="#MobileMenuModal">
+    <div class="icon-bar1"></div>
+    <div class="icon-bar2" style="display: block;"></div>
+    <div class="icon-bar3"></div>
+  </button>
+  
+  <!-- Custom mobile header -->
+  <!-- <div class="modal" id="MobileMenuModal">
+    <div class="modal-dialog mobile-menu-content">
+      <div class="modal-content mobile-menu-content">
+        <div class="modal-body">
+          <h1>Some menu here</h1>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div id="navbarNavDropdown" class="collapse navbar-collapse"><ul id="csutom_menu" class="navbar-nav ml-auto header_margin_right header_hover"><li id="menu-item-17" class="nav-item"><a class="nav-link header_menu" id="navbarDropdownMenuLink17" href="https://www.oodlestechnologies.com/services">Services</a><ul class="" id="navbarDropdownMenuLink17"><ul class="dropdown-menu drop_down sub_menu_background" id="">	</ul>
+<ul class="dropdown-menu drop_down sub_menu_background" id="">	</ul>
+<ul class="dropdown-menu drop_down sub_menu_background" id="">	</ul>
+<ul class="dropdown-menu drop_down sub_menu_background" id="">	</ul>
+<ul class="dropdown-menu drop_down sub_menu_background" id="">	</ul>
+<ul class="dropdown-menu drop_down sub_menu_background" id="">	</ul>
+<ul class="dropdown-menu drop_down sub_menu_background" id="">	</ul>
+<ul class="dropdown-menu drop_down sub_menu_background" id="">	</ul>
+<ul class="dropdown-menu drop_down sub_menu_background" id="">	</ul>
+<ul class="dropdown-menu drop_down sub_menu_background" id="">	</ul>
+<ul class="dropdown-menu drop_down sub_menu_background" id="">	</ul>
+<ul class="dropdown-menu drop_down sub_menu_background" id="">	</ul>
+<ul class="dropdown-menu drop_down sub_menu_background" id=""><ul class="" id=""><ul class="" id="">			</ul>
+		</ul>
+	</ul>
+</ul>
+</li>
+<li id="menu-item-18" class="nav-item active"><a class="nav-link header_menu" href="https://www.oodlestechnologies.com/technologies-stack">Tech Stack</a></li>
+<li id="menu-item-19" class="nav-item active"><a class="nav-link header_menu" href="https://www.oodlestechnologies.com/our-work">Our Work</a></li>
+<li id="menu-item-2992" class="nav-item active"><a class="nav-link header_menu" href="https://www.oodlestechnologies.com/our-vision">Our Vision</a></li>
+<li id="menu-item-21" class="nav-item active"><a class="nav-link header_menu" href="https://www.oodlestechnologies.com/team/about">Team</a></li>
+<li id="menu-item-22" class="nav-item active"><a class="nav-link text_head" href="https://www.oodlestechnologies.com/blogs">Blog</a></li>
+<li id="menu-item-23" class="nav-item active"><a class="nav-link header_menu" href="https://www.oodlestechnologies.com/contactus">Contact</a></li>
+</ul></div>  <div class="mobile-menu-bg"></div>
+
+  <div class="mobile-menu-view">
+    <div class="container-fluid">
+    <a href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/#" class="navbar-brand pb-2 logo custom_mobile_logo"></a>
+        <div id="navbarNavDropdown" class="navbar-collapse"><ul id="csutom_menu_mob" class="navbar-nav ml-auto header_margin_right"><li class="dropdown"><a class="nav-link header_menu" id="navbarDropdownMenuLink17" href="https://www.oodlestechnologies.com/services">Services</a><ul class=""><ul class="">	</ul>
+<ul class="">	</ul>
+<ul class="">	</ul>
+<ul class="">	</ul>
+<ul class="">	</ul>
+<ul class="">	</ul>
+<ul class="">	</ul>
+<ul class="">	</ul>
+<ul class="">	</ul>
+<ul class="">	</ul>
+<ul class="">	</ul>
+<ul class="">	</ul>
+<ul class=""><ul class=""><ul class="">			</ul>
+		</ul>
+	</ul>
+</ul>
+</li>
+<li class=""><a class="nav-link header_menu" href="https://www.oodlestechnologies.com/technologies-stack">Tech Stack</a></li>
+<li class=""><a class="nav-link header_menu" href="https://www.oodlestechnologies.com/our-work">Our Work</a></li>
+<li class=""><a class="nav-link header_menu" href="https://www.oodlestechnologies.com/our-vision">Our Vision</a></li>
+<li class=""><a class="nav-link header_menu" href="https://www.oodlestechnologies.com/team/about">Team</a></li>
+<li class=""><a class="nav-link text_head" href="https://www.oodlestechnologies.com/blogs">Blog</a></li>
+<li class=""><a class="nav-link header_menu" href="https://www.oodlestechnologies.com/contactus">Contact</a></li>
+</ul></div>    </div>
+  </div> 
+  </div>
+</nav>
+
+    </header><!-- .site-header -->
+		<div id="content" class="site-content">
+<section class="blog_detailed_section custom_blog_section">
+    <div class="container blog_detailed_padding">
+    <div class="row">
+      <div class="col-12 col-md-12">
+      <h1>Send Push Notification In Android And iOS Using Spring Boot Application</h1>
+      <h6>Posted By : S. Ajit | 10-Jun-2017</h6>
+      <div class="detailed_button">
+                      <a href="https://www.oodlestechnologies.com/blog/tagged/android">
+              android            </a>  
+                        <a href="https://www.oodlestechnologies.com/blog/tagged/ios">
+              ios            </a>  
+                      
+      </div>
+      </div>
+      <div class="col-12 col-md-3">
+        <!-- <div class="blog-search-btn">
+          <input type="text" placeholder="Search">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="19.999" height="20.77" viewBox="0 0 19.999 20.77">
+              <defs>
+                <style>
+                  .cls-search{fill:#5c5c5c;opacity:.46}
+                </style>
+              </defs>
+                <path id="search" d="M20.873 20.106l-5.827-6.06a8.242 8.242 0 1 0-.58.529l5.841 6.075a.392.392 0 1 0 .565-.544zm-11.655-4.42a7.451 7.451 0 1 1 7.451-7.451 7.459 7.459 0 0 1-7.451 7.451z" class="cls-search" transform="translate(-.983)"/>
+            </svg>
+          </span> 
+        </div> -->
+      </div>
+    </div>
+    </div>
+</section>
+<section class="detailed_page">
+   <div class="blog_section">
+       <div class="container-fluid">
+           <div class="row">
+
+           <div class="col-auto col-lg-2"></div>
+
+               <div class="col-12 col-lg-8 blog_details editblog">
+               <div class="overflow_blog">
+               
+
+	
+
+
+<p><span style="font-size:16px;"><span style="font-family:arial,helvetica,sans-serif;">To send a push notification in android device we are going to use <strong>FCM</strong> and for iOS device we will use <strong>APNS</strong>.</span></span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:16px;"><span style="font-family:arial,helvetica,sans-serif;"><u><strong>Android push notification:</strong></u></span></span></p>
+
+<p><span style="font-size:16px;"><span style="font-family:arial,helvetica,sans-serif;"><strong>FCM</strong> stands for Firebase Cloud Messaging its a service that is provided by Google. Inorder to use FCM you need an API key which you can get through firebase console and a device token or registration token of your device from FCM. If you are a backend developer and push notification is used in your project then you can request&nbsp; your android developer to register your project app with FCM and provide API key and device token respectively. If you are ready with API key and device token you can use the below code to send push notification to a android device.</span></span></p>
+
+<p><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size:16px;"><!-- HTML generated using hilite.me --></span></span></p>
+
+<div style="background: #ffffff; overflow:auto;width:auto;background-color:rgba(238,238,238,0.92);border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%"><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size:16px;"><span style="color: #008800; font-weight: bold">try</span> <span style="color: #333333">{</span>
+   String androidFcmKey<span style="color: #333333">=</span><span style="background-color: #fff0f0">"XXXXXXXXXXXX"</span><span style="color: #333333">;</span>
+   String androidFcmUrl<span style="color: #333333">=</span><span style="background-color: #fff0f0">"https://fcm.googleapis.com/fcm/send"</span><span style="color: #333333">;</span>
+
+   RestTemplate restTemplate <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> RestTemplate<span style="color: #333333">();</span>
+   HttpHeaders httpHeaders <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> HttpHeaders<span style="color: #333333">();</span>
+   httpHeaders<span style="color: #333333">.</span><span style="color: #0000CC">set</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">"Authorization"</span><span style="color: #333333">,</span> <span style="background-color: #fff0f0">"key="</span> <span style="color: #333333">+</span> androidFcmKey<span style="color: #333333">);</span>
+   httpHeaders<span style="color: #333333">.</span><span style="color: #0000CC">set</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">"Content-Type"</span><span style="color: #333333">,</span> <span style="background-color: #fff0f0">"application/json"</span><span style="color: #333333">);</span>
+   JSONObject msg <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> JSONObject<span style="color: #333333">();</span>
+   JSONObject json <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> JSONObject<span style="color: #333333">();</span>
+
+   msg<span style="color: #333333">.</span><span style="color: #0000CC">put</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">"title"</span><span style="color: #333333">,</span> <span style="background-color: #fff0f0">"Title"</span><span style="color: #333333">);</span>
+   msg<span style="color: #333333">.</span><span style="color: #0000CC">put</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">"body"</span><span style="color: #333333">,</span> <span style="background-color: #fff0f0">"Message"</span><span style="color: #333333">);</span>
+   msg<span style="color: #333333">.</span><span style="color: #0000CC">put</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">"notificationType"</span><span style="color: #333333">,</span> <span style="background-color: #fff0f0">"Test"</span><span style="color: #333333">);</span>
+
+   json<span style="color: #333333">.</span><span style="color: #0000CC">put</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">"data"</span><span style="color: #333333">,</span> msg<span style="color: #333333">);</span>
+   json<span style="color: #333333">.</span><span style="color: #0000CC">put</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">"to"</span><span style="color: #333333">,</span> deviceToken<span style="color: #333333">);</span>
+
+   HttpEntity<span style="color: #333333">&lt;</span>String<span style="color: #333333">&gt;</span> httpEntity <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> HttpEntity<span style="color: #333333">&lt;</span>String<span style="color: #333333">&gt;(</span>json<span style="color: #333333">.</span><span style="color: #0000CC">toString</span><span style="color: #333333">(),</span>httpHeaders<span style="color: #333333">);</span>
+   String response <span style="color: #333333">=</span> restTemplate<span style="color: #333333">.</span><span style="color: #0000CC">postForObject</span><span style="color: #333333">(</span>androidFcmUrl<span style="color: #333333">,</span>httpEntity<span style="color: #333333">,</span>String<span style="color: #333333">.</span><span style="color: #0000CC">class</span><span style="color: #333333">);</span>
+   System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span>response<span style="color: #333333">);</span>
+<span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">catch</span> <span style="color: #333333">(</span>JSONException e<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+   e<span style="color: #333333">.</span><span style="color: #0000CC">printStackTrace</span><span style="color: #333333">();</span>
+<span style="color: #333333">}</span>
+</span></span></pre>
+</div>
+
+<p><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size:16px;">To send push notifications to multiple android devices just change this line <span style="background-color: #fff0f0">finalMsg.put("to", deviceToken);</span> to this <span style="background-color: #fff0f0">finalMsg.put("registration_ids", deviceTokenArray); </span></span></span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size:16px;"><u><strong>iOS push notification:</strong></u></span></span></p>
+
+<p><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size:16px;"><strong>APNS </strong>stands for Apple Push Notification Service. For using this service Apple provides some cryptographic certificates which can be a pem or p12 file. In your spring boot application you need to add below written maven dependency for using APNS.</span></span></p>
+
+<p><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size:16px;"><!-- HTML generated using hilite.me --></span></span></p>
+
+<div style="background: #ffffff; overflow:auto;width:auto;background-color:rgba(238,238,238,0.92);border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%"><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size:16px;"><span style="color: #007700">&lt;dependency&gt;</span>
+	<span style="color: #007700">&lt;groupId&gt;</span>com.notnoop.apns<span style="color: #007700">&lt;/groupId&gt;</span>
+	<span style="color: #007700">&lt;artifactId&gt;</span>apns<span style="color: #007700">&lt;/artifactId&gt;</span>
+	<span style="color: #007700">&lt;version&gt;</span>1.0.0.Beta6<span style="color: #007700">&lt;/version&gt;</span>
+<span style="color: #007700">&lt;/dependency&gt;</span>
+</span></span></pre>
+</div>
+
+<p><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size:16px;">For Apple push notification certificate(p12 file) and device token you need to ask your project's iOS developer.</span></span></p>
+
+<p><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size:16px;">Save Apple push notification certificate into resources folder of your spring boot application. If you are ready with certificate and device token you can use the below code to send push notification to a iOS device.</span></span></p>
+
+<p><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size:16px;"><!-- HTML generated using hilite.me --></span></span></p>
+
+<div style="background: #ffffff; overflow:auto;width:auto;background-color:rgba(238,238,238,0.92);border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%"><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size:16px;"><span style="color: #555555; font-weight: bold">@Autowired</span>
+Environment env<span style="color: #333333">;</span>
+<span style="color: #333333">.</span>
+<span style="color: #333333">.</span>
+<span style="color: #333333">.</span>
+<span style="color: #008800; font-weight: bold">try</span> <span style="color: #333333">{</span>
+   InputStream inputStream <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ClassPathResource<span style="color: #333333">(</span><span style="background-color: #fff0f0">"push.p12"</span><span style="color: #333333">).</span><span style="color: #0000CC">getInputStream</span><span style="color: #333333">();</span>
+   ApnsService service<span style="color: #333333">;</span>
+   <span style="color: #008800; font-weight: bold">if</span> <span style="color: #333333">(</span>Arrays<span style="color: #333333">.</span><span style="color: #0000CC">asList</span><span style="color: #333333">(</span>env<span style="color: #333333">.</span><span style="color: #0000CC">getActiveProfiles</span><span style="color: #333333">()).</span><span style="color: #0000CC">contains</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">"pro"</span><span style="color: #333333">))</span> <span style="color: #333333">{</span>
+     service <span style="color: #333333">=</span> APNS<span style="color: #333333">.</span><span style="color: #0000CC">newService</span><span style="color: #333333">().</span><span style="color: #0000CC">withCert</span><span style="color: #333333">(</span>inputStream<span style="color: #333333">,</span> <span style="background-color: #fff0f0">"Password@123"</span><span style="color: #333333">)</span>
+                     <span style="color: #333333">.</span><span style="color: #0000CC">withProductionDestination</span><span style="color: #333333">().</span><span style="color: #0000CC">build</span><span style="color: #333333">();</span>
+   <span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">else</span> <span style="color: #333333">{</span>
+     service <span style="color: #333333">=</span> APNS<span style="color: #333333">.</span><span style="color: #0000CC">newService</span><span style="color: #333333">().</span><span style="color: #0000CC">withCert</span><span style="color: #333333">(</span>inputStream<span style="color: #333333">,</span> <span style="background-color: #fff0f0">"Password@123"</span><span style="color: #333333">)</span>
+                     <span style="color: #333333">.</span><span style="color: #0000CC">withSandboxDestination</span><span style="color: #333333">().</span><span style="color: #0000CC">build</span><span style="color: #333333">();</span>
+   <span style="color: #333333">}</span>
+   String payload <span style="color: #333333">=</span> APNS<span style="color: #333333">.</span><span style="color: #0000CC">newPayload</span><span style="color: #333333">().</span><span style="color: #0000CC">customField</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">"customData"</span><span style="color: #333333">,</span><span style="background-color: #fff0f0">"customData"</span><span style="color: #333333">)</span>
+                          <span style="color: #333333">.</span><span style="color: #0000CC">alertBody</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">"Message"</span><span style="color: #333333">).</span><span style="color: #0000CC">build</span><span style="color: #333333">();</span>
+   ApnsNotification apns <span style="color: #333333">=</span> service<span style="color: #333333">.</span><span style="color: #0000CC">push</span><span style="color: #333333">(</span>deviceToken<span style="color: #333333">,</span> payload<span style="color: #333333">);</span>
+<span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">catch</span> <span style="color: #333333">(</span>IOException e<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+   e<span style="color: #333333">.</span><span style="color: #0000CC">printStackTrace</span><span style="color: #333333">();</span>
+<span style="color: #333333">}</span>
+</span></span></pre>
+</div>
+
+<p><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size:16px;">We have configured push notification based on environment thats why we have autowired Environment interface. For sending notifications to multiple iOS devices you need to iterate over ApnService's push method. &nbsp;</span></span></p>
+
+<p><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size:16px;">Thanks</span></span></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+<script type="text/javascript" defer="" src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/autoptimize_d5c2a94880a904afeac86552947c0736.js.download"></script>
+
+                              
+   <!-- <div class="post_blog_icons">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank">
+      <div class="share_post_blog for_face_book">
+        <i class="fa fa-facebook common_icon_css face_book"></i>
+        <span class="st-label">Facebook</span>
+      </div>
+    </a>
+    <a href="https://twitter.com/share?url=" target="_blank">
+      <div class="share_post_blog for_twitter">
+        <i class="fa fa-twitter common_icon_css twi_tter"></i>
+        <span class="st-label">Twitter</span>
+      </div>
+    </a>
+     <div class="share_post_blog">
+     <i class="fa fa-facebook"></i>
+    <span class="st-label">Share</span>
+    </div>
+               
+               
+               
+               
+               </div> -->
+   </div> 
+        
+        <div class="padding_blog_mobile">
+                                <div class="blog_tags">
+                    <h5>Related Tags</h5>
+                                              <div class="blog_d_button"><a href="https://www.oodlestechnologies.com/blog/tagged/nodejs">nodejs</a></div>
+                                                    <div class="blog_d_button"><a href="https://www.oodlestechnologies.com/blog/tagged/saas">saas</a></div>
+                                                    <div class="blog_d_button"><a href="https://www.oodlestechnologies.com/blog/tagged/mobile%20application">mobile application</a></div>
+                                                    <div class="blog_d_button"><a href="https://www.oodlestechnologies.com/blog/tagged/Spring%20boot">Spring boot</a></div>
+                                              
+                </div>
+                           
+                <!-- <div class="explore">+Explore more</div> -->
+               
+               </div>
+              
+               <div class="blog-social-media-platform">
+                <div class="row">
+
+                  <!-- <div class="col-4 col-md-6">
+                    <div class="like-button">
+                      <a href="#" title="like">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32.919" viewBox="0 0 32 32.919">
+                        <defs>
+                          <style>
+                            .cls-0{fill:#5c5c5c}
+                            .like-button > a:hover .cls-0{fill:#2f80c2}
+                          </style>
+                        </defs>
+                        <g id="like" transform="translate(-6.675)">
+                          <path id="Path_5326" d="M37.715 22.38a4.089 4.089 0 0 0 .957-2.733 4.2 4.2 0 0 0-.895-2.368 3.679 3.679 0 0 0-.874-4.234c-1.095-1-2.953-1.446-5.528-1.322a21.6 21.6 0 0 0-3.387.434h-.007c-.344.062-.709.138-1.081.22a12.009 12.009 0 0 1 .86-4c.964-2.933.909-5.177-.179-6.677a4.376 4.376 0 0 0-3.5-1.7 1.729 1.729 0 0 0-1.329.606 4.631 4.631 0 0 0-.578 3.284c-.909 2.437-3.456 8.412-5.61 10.071a.737.737 0 0 0-.11.1 7.4 7.4 0 0 0-1.354 2.02 2.841 2.841 0 0 0-1.363-.344h-4.2A2.866 2.866 0 0 0 6.675 18.6v11.187a2.866 2.866 0 0 0 2.864 2.863h4.2a2.858 2.858 0 0 0 1.652-.523l1.618.193a69.31 69.31 0 0 0 9.176.5c.819.062 1.59.1 2.306.1a15.446 15.446 0 0 0 3.2-.289 5.986 5.986 0 0 0 4.275-2.657 4.213 4.213 0 0 0 .468-2.637A4.391 4.391 0 0 0 38 23.763a4.65 4.65 0 0 0-.285-1.383zM9.539 30.792a1.006 1.006 0 0 1-1.005-1.005V18.593a1.006 1.006 0 0 1 1.005-1.005h4.2a1.006 1.006 0 0 1 1.005 1.005V29.78a1.006 1.006 0 0 1-1.005 1.005h-4.2zm26.414-9.218a.925.925 0 0 0-.124 1.122 2.864 2.864 0 0 1 .317 1.15 2.755 2.755 0 0 1-1.294 2.382.938.938 0 0 0-.317 1.06 2.431 2.431 0 0 1-.186 1.776 4.306 4.306 0 0 1-3.043 1.749 18.135 18.135 0 0 1-5.018.151h-.1a67.95 67.95 0 0 1-8.949-.489h-.007l-.7-.083a2.917 2.917 0 0 0 .062-.606V18.593a2.912 2.912 0 0 0-.131-.854 5.754 5.754 0 0 1 1.28-2.361c3.099-2.45 6.121-10.718 6.252-11.078a.872.872 0 0 0 .041-.461 4.3 4.3 0 0 1 .089-2 2.47 2.47 0 0 1 1.941.929c.7.971.675 2.705-.083 5-1.156 3.5-1.253 5.349-.337 6.161a1.5 1.5 0 0 0 1.5.268c.42-.1.819-.179 1.2-.241l.089-.021c2.113-.461 5.9-.743 7.214.454a1.98 1.98 0 0 1 .234 2.513.921.921 0 0 0 .165 1.2 2.608 2.608 0 0 1 .764 1.6 2.556 2.556 0 0 1-.86 1.872z" class="cls-0" data-name="Path 5326"/>
+                        </g>
+                        </svg>
+                        <span>2.4k Likes</span>
+                      </a>
+                    </div>
+                  </div> -->
+                  
+                <div class="col-12">
+                  <div class="social-buttons" style="float:left;">
+                    <span>Share On:</span>
+                    <a href="http://www.facebook.com/share.php?u=https%3A%2F%2Fwww.oodlestechnologies.com%2Fblogs%2FSend-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application%2F" title="facebook" id="fb_share">
+                      <svg xmlns="http://www.w3.org/2000/svg" id="facebook-logo-button" width="32" height="32" viewBox="0 0 32 32">
+                      <defs>
+                        
+                      </defs>
+                      <g id="Group_1117" data-name="Group 1117">
+                        <path id="Path_5321" d="M16 0a16 16 0 1 0 16 16A16.018 16.018 0 0 0 16 0zm3.979 16.563h-2.6v9.278h-3.86v-9.278h-1.834v-3.279h1.834v-2.121a3.617 3.617 0 0 1 3.892-3.893l2.858.011v3.183H18.2a.785.785 0 0 0-.818.893v1.927h2.939z" class="cls-2" data-name="Path 5321"></path>
+                      </g>
+                      </svg>              
+                    </a>
+
+                    <a href="https://twitter.com/share?url=https%3A%2F%2Fwww.oodlestechnologies.com%2Fblogs%2FSend-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application%2F" title="twitter" id="twitter_share">
+                      <svg xmlns="http://www.w3.orGetCustomBlogRelated_elasticg/2000/svg" id="twitter-logo-button" width="32" height="32" viewBox="0 0 32 32">
+                        <defs>
+                          
+                        </defs>
+                        <g id="Group_1118" data-name="Group 1118">
+                          <path id="Path_5322" d="M16 0a16 16 0 1 0 16 16A16.018 16.018 0 0 0 16 0zm7.138 12.338c.007.159.011.318.011.478a10.476 10.476 0 0 1-16.124 8.823 7.436 7.436 0 0 0 5.452-1.525 3.686 3.686 0 0 1-3.44-2.558 3.7 3.7 0 0 0 1.663-.062 3.683 3.683 0 0 1-2.954-3.611v-.046a3.668 3.668 0 0 0 1.667.46A3.688 3.688 0 0 1 8.275 9.38a10.457 10.457 0 0 0 7.59 3.849A3.685 3.685 0 0 1 22.14 9.87a7.351 7.351 0 0 0 2.339-.894 3.7 3.7 0 0 1-1.622 2.038 7.321 7.321 0 0 0 2.115-.579 7.408 7.408 0 0 1-1.834 1.903z" class="cls-3" data-name="Path 5322"></path>
+                        </g>
+                      </svg>
+                    </a>
+
+                    <a href="https://pinterest.com/pin/create/link/?url=https%3A%2F%2Fwww.oodlestechnologies.com%2Fblogs%2FSend-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application%2F" title="pinterest" id="pinterest_share">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <defs>
+                          
+                        </defs>
+                        <g id="pinterest">
+                          <circle id="Ellipse_144" cx="16" cy="16" r="16" class="cls-1" data-name="Ellipse 144"></circle>
+                          <g id="Group_1119" data-name="Group 1119" transform="translate(7.412 5.736)">
+                          <path id="Path_5323" d="M39.023 40.607c-1.344-.1-1.909-.77-2.963-1.41-.579 3.04-1.287 5.953-3.384 7.476-.648-4.594.95-8.045 1.692-11.708-1.265-2.13.152-6.416 2.821-5.36 3.284 1.3-2.843 7.919 1.27 8.746 4.295.863 6.048-7.452 3.384-10.157-3.848-3.9-11.2-.089-10.3 5.5.22 1.367 1.632 1.781.564 3.667-2.463-.545-3.2-2.488-3.1-5.077.152-4.239 3.809-7.207 7.476-7.618 4.638-.519 8.991 1.7 9.592 6.066.676 4.924-2.094 10.257-7.053 9.874z" class="cls-4" data-name="Path 5323" transform="translate(-29 -24.593)"></path>
+                          </g>
+                        </g>
+                      </svg>
+                    </a>
+
+                    <a title="mail" id="mail_share" href="mailto:?subject=https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/&amp;body=https%3A%2F%2Fwww.oodlestechnologies.com%2Fblogs%2FSend-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application%2F">          
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <defs>
+                          
+                        </defs>
+                        <g id="email_1_" data-name="email (1)" transform="translate(-.001)">
+                          <g id="Group_1120" data-name="Group 1120" transform="translate(.001)">
+                            <path id="Path_5324" d="M16 0a16 16 0 1 0 16 16A16 16 0 0 0 16 0zm0 5.62l9.468 5.9H6.533zm9.586 15.332a1.714 1.714 0 0 1-1.714 1.714H8.13a1.714 1.714 0 0 1-1.714-1.714V11.9a1.705 1.705 0 0 1 .027-.293l9.046 5.641c.011.007.023.012.034.018l.036.019a.95.95 0 0 0 .2.077h.021a.976.976 0 0 0 .223.028.958.958 0 0 0 .223-.028h.021a.959.959 0 0 0 .2-.077l.036-.019c.011-.006.023-.011.034-.018l9.046-5.641a1.7 1.7 0 0 1 .027.293v9.052z" class="cls-5" data-name="Path 5324" transform="translate(-.001)"></path>
+                          </g>
+                        </g>
+                      </svg>
+                    </a>
+
+                  <a href="https://www.linkedin.com/shareArticle/?&amp;url=https%3A%2F%2Fwww.oodlestechnologies.com%2Fblogs%2FSend-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application%2F?" title="Linkedin" id="linkedin_share">
+                    <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/linkedin-svg.svg" class="social_img" alt="Linkedin">
+                  </a>
+
+                    <a href="http://www.reddit.com/submit?title=https%3A%2F%2Fwww.oodlestechnologies.com%2Fblogs%2FSend-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application%2F&amp;url=https%3A%2F%2Fwww.oodlestechnologies.com%2Fblogs%2FSend-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application%2F" title="Reddit" id="reddit_share">
+                    <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/reddit-svg.svg" class="social_img" alt="Reddit">
+                    </a>
+
+                    <!-- <a href="" title="Tumblr" id="tumblr_share">
+                    <img src="/assets/images/blog_social_img/tumblr-svg.svg" class="social_img" alt="Tumblr">
+                    </a> -->
+
+                    <script>
+                      window.onload = function() {
+                          fb_share.href ='http://www.facebook.com/share.php?u=' + encodeURIComponent(location.href); 
+                          twitter_share.href ='https://twitter.com/share?url=' + encodeURIComponent(location.href); 
+                          pinterest_share.href ='https://pinterest.com/pin/create/link/?url=' + encodeURIComponent(location.href); 
+                          mail_share.href="mailto:?subject="+location.href+"&body="+encodeURIComponent(location.href);
+                          linkedin_share.href =' https://www.linkedin.com/shareArticle/?&url='+encodeURIComponent(location.href)+'?';
+                         
+                          reddit_share.href ='http://www.reddit.com/submit?title='+encodeURIComponent(location.href)+'&url=' + encodeURIComponent(location.href);
+                          // tumblr_share.href='http://www.tumblr.com/share?v=3&u=&t=&s=' + encodeURIComponent(location.href);
+
+                          $('#fb_share').click(function(e) {
+                              e.preventDefault();
+                              window.open($(this).attr('href'), 'fbShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+                              return false;
+                          });
+                            
+                          $('#twitter_share').click(function(e) {
+                            e.preventDefault();
+                              window.open($(this).attr('href'), 'fbShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+                              return false;
+                          });
+                          $('#pinterest_share').click(function(e) {
+                            e.preventDefault();
+                              window.open($(this).attr('href'), 'fbShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+                              return false;
+                          });
+
+                          $('#mail_share').click(function(e) {
+                           // e.preventDefault();
+                              // window.open($(this).attr('href'), 'fbShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+                              // return false;
+                          });
+
+                          $('#linkedin_share').click(function(e) {
+                            e.preventDefault();
+                              window.open($(this).attr('href'), 'fbShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+                              return false;
+                          });
+
+                          $('#reddit_share').click(function(e) {
+                            e.preventDefault();
+                              window.open($(this).attr('href'), 'fbShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+                              return false;
+                          });
+
+                          // $('#tumblr_share').click(function(e) {
+                          //   e.preventDefault();
+                          //     window.open($(this).attr('href'), 'fbShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+                          //     return false;
+                          // });
+                        
+                      }  
+                  </script>
+
+                  </div>                    
+                </div>
+
+                </div>
+              </div> 
+
+              <!-- <form type="" action="">
+                <div class="form-group">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="" placeholder="Name">
+                    <input type="email" class="form-control" id="" placeholder="Email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" rows="5" id="comment" placeholder="Write a response.."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form> -->
+
+                
+
+  
+  <div class="blog-comment-about-author">
+    <h3>About Author</h3>
+    <div class="row padding-row">
+      <div class="col-12 col-sm-2">
+        <div class="about-author-img">
+        <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/43db85c5-6b11-4da0-b02a-ef3cdfcdf582.jpeg" alt="Author Image">
+        </div>
+      </div>
+      <div class="col-12 col-sm-10">
+      <div class="about-author-content">
+        <h5>S. Ajit</h5>
+        <p>Ajit is a software developer who loves solving problems and programming in C, C++, Java. He also has a passion to learn new technologies.</p>
+      </div>
+      </div>
+    </div>
+  </div>
+<!-- 
+  <button class="blog-response-btn" id="blog_response_btn">See all responses</button>
+
+<div class="write_comment_form" id="write_comment_form">
+  <hr>
+  <p class="nocomments">No Comments Yet.</p>                       
+  <hr>
+  <div id="respond">
+  <div class="cancel-comment-reply">
+    <small id="cancel" onclick="resetCommentFormData()"><a rel="12%nofollow" id="cancel-comment-reply-link" href="/blogs/custom-hr-software/#respond" style="display:none;">Click here to cancel reply.</a></small>
+  </div>
+  <form action="" method="post" class="comment-form" id="commentform">
+    <h2 class="leave-reply">Leave a comment</h2>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group relative">
+          <input placeholder="Name" type="text" class="form-control blog-fom author-comment" name="author" id="author" value="" size="22" tabindex="1" aria-required="true">
+        </div> 
+      </div>
+      <div class="col-md-6">
+        <div class="form-group relative">
+          <input placeholder="Email" type="email" class=" form-control blog-fom email" name="email" id="Email" value="" size="22" tabindex="2" aria-required="true">
+
+          <p class="email-error-invalid error-hide" style="display: none;"> Please Enter a valid E-mail address</p>
+          <p class="email-required error-hide" style="display: none;">Email is required</p>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <textarea placeholder="Write a response.." class="form-control blog-fom custom-comment textarea" name="comment" id="comment" cols="58" rows="5" style="width:100%;" tabindex="4"></textarea>
+    </div>
+  
+    </div>
+    <p class="read_more_btn">
+      <input class="btn-secondary post_button" name="submit" type="submit" id="submit" tabindex="5" value="Submit"><br><br><br>
+      <input type="hidden" value="" name="comment-parent-id" class="comment-parent-id" />
+      <input type="hidden" value="" name="blog_title" />
+      <input type="hidden" name="comment_post_ID" value="" id="comment_post_ID">
+      <input type="hidden" name="comment_parent" id="comment_parent" value="0">
+    </p>
+
+  </form>
+</div> -->
+
+  </div></div></div></div></section>
+
+    <section class=" banner_row_blogs_container blog-post-container">
+
+
+    <h2>More From Oodles</h2>
+
+<div class="row all_blogs  owl_carousel_for_Custom_blog owl-theme">
+
+
+                  
+                    <div class=" item  col-12 col-md-4 filter-item padding_top  Array" data-attr-id="8493" data-attr-date="1556630834">
+                    <div class="card blog_card blog_card_services_page">
+                         
+                         <div>
+                                                  <h5 class="paragraph line-clamp-2 line-clamp"><a href="https://www.oodlestechnologies.com/blogs/hybrid-mobile-app-logistics">Benefits of a Hybrid Mobile App In Logistics Management</a></h5></div> 
+                        <div>
+                        <a href="https://www.oodlestechnologies.com/blogs/hybrid-mobile-app-logistics">
+                        <h6 class="blog_description">
+                          In this blog post, we delineate the key benefits of a hybrid mobile app in the logistics industry and analyze critical factors that impact logistics performance.</h6></a>
+                        </div>
+                       
+                         <div class="heading_b"> 
+                         <a class="button_streaming AI" href="https://www.oodlestechnologies.com/blog/tagged/saas">saas</a>
+                            </div>
+                         
+
+                         <div class="blogs_title">
+                         <h6 class="heading">Anirudh Bhardwaj | 10-Sep-2020</h6>
+                         </div>
+                  </div>
+                  </div>
+                          
+                    <div class=" item  col-12 col-md-4 filter-item padding_top  Array" data-attr-id="8493" data-attr-date="1556630834">
+                    <div class="card blog_card blog_card_services_page">
+                         
+                         <div>
+                                                  <h5 class="paragraph line-clamp-2 line-clamp"><a href="https://www.oodlestechnologies.com/blogs/time-tracking-app-development-remote-collaboration">Time Tracking App Development For Effective Remote Collaboration</a></h5></div> 
+                        <div>
+                        <a href="https://www.oodlestechnologies.com/blogs/time-tracking-app-development-remote-collaboration">
+                        <h6 class="blog_description">
+                          We, at Oodles Technologies, provide 360-degree time tracking app development services for effective remote collaboration to monitor employee tasks and efficiently manage work activities.</h6></a>
+                        </div>
+                       
+                         <div class="heading_b"> 
+                         <a class="button_streaming AI" href="https://www.oodlestechnologies.com/blog/tagged/saas">saas</a>
+                            </div>
+                         
+
+                         <div class="blogs_title">
+                         <h6 class="heading">Anirudh Bhardwaj | 10-Sep-2020</h6>
+                         </div>
+                  </div>
+                  </div>
+                          
+                    <div class=" item  col-12 col-md-4 filter-item padding_top  Array" data-attr-id="8493" data-attr-date="1556630834">
+                    <div class="card blog_card blog_card_services_page">
+                         
+                         <div>
+                                                  <h5 class="paragraph line-clamp-2 line-clamp"><a href="https://www.oodlestechnologies.com/dev-blog/springboot-application-with-zull-api-gateway">Spring Boot Application With Zull API Gateway</a></h5></div> 
+                        <div>
+                        <a href="https://www.oodlestechnologies.com/dev-blog/springboot-application-with-zull-api-gateway">
+                        <h6 class="blog_description">
+                          Here, we are going to discuss Spring Boot application with Zull API gateway for dynamic routing, monitoring, resiliency and security.</h6></a>
+                        </div>
+                       
+                         <div class="heading_b"> 
+                         <a class="button_streaming AI" href="https://www.oodlestechnologies.com/blog/tagged/Spring%20boot">Spring boot</a>
+                            </div>
+                         
+
+                         <div class="blogs_title">
+                         <h6 class="heading">Deepak Maurya | 10-Sep-2020</h6>
+                         </div>
+                  </div>
+                  </div>
+                                     
+             <!-- </div> -->
+                </div>
+               
+               
+          
+</section>
+
+      
+<!-- <script type="text/javascript">
+    jQuery(document).ready(function(){
+      SyntaxHighlighter.all();
+    });</script> -->
+
+<!-- Footer form section start here -->
+
+<section class="custom_contact key_feature_back perposal_hide_scroll" id="contact_footer_form">
+	<div class="container top_bottom_padding footer_padding">
+		<div class="section_heading form_footer_section">
+			<h2>
+			Ready to innovate? Let's get in touch
+			</h2>
+		</div>
+		<div class=" aos-init aos-animate background-color-contact">
+			<div class="main-form-area">
+				<div>
+					<form class="contact_1form" id="contactUsForm" method="post" enctype="multipart/form-data">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="text" aria-label="user_name" name="user_name" id="user_name" class="form-control contct-input-text  mobile_contact" placeholder="Name">
+									<span class="name_error  error_text" style="display:none"> </span>
+                                    
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="text" name="user_phone" aria-label="user_phone" id="user_phone" class="form-control contct-input-text mobile_contact" placeholder="Contact No">
+									<span class="phone_error  error_text" style="display:none"> </span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="email" name="user_email" aria-label="user_email" id="user_email" class="form-control mobile_contact key_up_remove_error contct-input-text required" placeholder="Email*">
+								<span class="email_error  error_text" style="display:none"> </span>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<select class="form-control mobile_contact" aria-label="user_quotes" id="quotes_" name="quotes_">
+										<option value="Request for Proposal">Request for Proposal</option>
+										<option value="General Query">General Query</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<textarea name="user_query" row="10" column="100" id="user_query" class="form-control mobile_contact blc-textarea" placeholder="Tell us about your project" cols="30" rows="10"></textarea>
+									<span class="query_error  error_text" style="display:none"> </span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-8">
+								<div class="row">
+									<div class="attach">
+										<div class="attcment_icon">
+											<i class="fa fa-paperclip open_uploader" aria-hidden="true"></i> 
+											<span id="attchment_text" class="open_uploader">
+												Attach files
+											</span>
+											<div class="row attachment-part">
+												<div class="col-md-12 files_list">
+													
+												
+												</div>
+											</div>
+										</div>
+										<input type="file" name="attachmentFile" id="attachmentFile" multiple="" class="form-control chooes_button attachment_File">
+										<div class="file_error  error_text">
+											<span class="file_max_size_error">  </span>
+											<span class="file_total_limit_error">  </span>
+											<span class="not-allow">  </span>
+										</div>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="Subscribe_newsletter">
+
+										<input type="checkbox" name="vehicle1" value="newsletter" checked="" id="vehicle1"> <label class="newsletter" for="vehicle1">Subscribe to newsletter</label>
+																			</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group custom_captcha captcha_bottom-alinmnet">
+									<div class="g-recaptcha" data-sitekey="6LfgZp0UAAAAAJrHkxb6uEGTP9gBvVguYRTKMcze"></div>
+            						<p class="error-recap">Recaptcha is required.</p>
+								</div>
+								
+								</div>
+								<div class="form-submit for_full_width_div">
+									<div class="form-group custom_submit_btn mobile_submit">
+										<button type="submit" name="contact_oodlestechnologies" value="Submit" class="btn custom_cont_button buttons fooetr_sub_imt">Submit</button>
+
+									</div>
+
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
+</div><!-- .site-content -->
+<!-- Request for Proposal section -->
+<div id="info" class="info request_hide_mobile">Request for Proposal</div>
+        <div id="info_form" class="info_1 hideF">
+            <div>
+              <span class=" glyphicon-remove cross" style="width: 17px; height: 17px;background: url(https://www.oodlestechnologies.com/wp-content/themes/oodlestechnologies/assets/images/homepage/animation/blocks_sprites.png ) -90px -99px;">
+            </span>
+            </div>
+
+            <form id="contactForm">
+            <label for="name">Get In Touch</label>  <br>
+
+              <div class="form-group">
+                 <input placeholder="Name" type="text" class="form-control key_up_remove_error error" name="username1" id="username1" value="" size="22" tabindex="1">
+
+                <p class="name-require error-msg" style="display: none;">Name is required</p> 
+
+              </div>
+
+              <div class="form-group">
+                <input placeholder="Email" type="text" class="form-control key_up_remove_error error" name="emailid1" id="emailid1" value="" size="22" tabindex="2">
+                <p class="email-error error-msg" style="display: none;"> Enter a valid Email address</p>
+                <p class="email-require error-msg" style="display: none;">Email is required</p>
+              </div>
+
+              <div class="form-group">
+                 <select class="form-control" id="quotes_1" name="quotes_1">
+                    <option value="Request a proposal" class="request_quote">Request for Proposal</option>
+                    <option value="General Query" class="request_quote">General Query</option>
+                 </select>
+              </div>
+              <div class="form-group">
+                 <textarea placeholder="Tell us about your project" class="form-control key_up_remove_error error" name="usercomment1" id="usercomment1" tabindex="4"></textarea>
+                  <!-- <p class="user-comment-error  error-msg" >Please remove URL from text</p> -->
+                  <p class="comment-require error-msg" style="display: none;">Comment is required</p> 
+              </div>
+              <div class="form-group">
+                 <div class="g-recaptcha" data-sitekey="6LfgZp0UAAAAAJrHkxb6uEGTP9gBvVguYRTKMcze"></div>
+                  <p class="error-recap-1 error-msg" style="display:none">Recaptcha is required.</p>
+              </div>
+              <input type="hidden" class="current_url" disabled="" value="http://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/">
+
+              <input type="hidden" class="previous_url" disabled="" value="https://www.bing.com/">
+
+               <div class="form-group">
+                <button type="submit" name="submit_info" class="btn btn-primary proposal_btn" style="width: 100%;">Submit</button>
+               </div>
+               <span id="msgs1" style="color: rgb(51, 122, 183); display: none;">Sending message..</span>
+            </form>
+        </div>
+        <!-- contact us button end here -->
+
+
+
+<!-- cookies section -->
+<div class="alert alert-warning alert-dismissible fade show alert_background_coockies" role="alert" style="display: block;">
+   <div class="row">
+      <div class="col-md-10 col-xs-12">
+      <p class="coockies_content">
+ Cookies are important to the proper functioning of a site. To improve your experience, we use cookies to remember log-in details and provide secure log-in, collect statistics to optimize site functionality, and deliver content tailored to your interests.
+ Click Agree and Proceed to accept cookies and go directly to the site or click on <a href="https://www.oodlestechnologies.com/privacy-policy">View Cookie</a> Settings to see detailed descriptions of the types of cookies and choose whether to accept certain cookies while on the site.
+ </p>
+      </div>
+      <div class="col-md-2 coockies_agree">
+      <button type="button" name="coockies" value="Submit" id="cokkies-submit" class="btn coockies_btn buttons">Ok</button>
+      
+      </div>
+   </div>
+</div>
+
+
+        <!-- contact us button end here -->
+<footer id="colophon" class="site-footer technologies_footer" role="contentinfo">
+   <!-- Navigation tabs section start here -->
+
+   <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom_model_header">
+
+       <div class="model_image">
+       <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/popup-thankyou.jpg" class="" alt="submit-image">
+       </div>
+        <button type="button" class="close_submit_button" name="close-modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body thank_you_content Text_color">
+        <h3>Thank you for contacting us.</h3>
+        <p class="Font_size_color">Sit tight! One of our technology experts will get in touch with you within next 24 hours.</p>
+        <div class="form-group meanwhile_submit_btn">
+
+          <a href="https://www.oodlestechnologies.com/services" class="btn custom_cont_button meanwhile_explore buttons">Meanwhile, explore more</a>
+
+        </div>
+<div class="modle_icon Font_size_color">
+    <p>Bringing technology solutions for digital business transformation. Catch up with all the latest tech buzz:</p>
+    <div class="all_model_icon">
+    <a href="https://www.facebook.com/OodlesTech" rel="noreferrer" target="_blank"><div class="thank_modle_icon modle_social_icon"><i class="fa fa-facebook icon_adjust" aria-hidden="true"></i></div></a>
+    <a href="https://www.linkedin.com/company/oodles-technologies-pvt-ltd" rel="noreferrer" target="_blank"><div class="thank_modle_icon modle_social_icon"><i class="fa fa-linkedin icon_adjust" aria-hidden="true"></i></div></a>
+    <a href="https://twitter.com/oodlestech" rel="noreferrer" target="_blank"> <div class="thank_modle_icon modle_social_icon"><i class="fa fa-twitter icon_adjust" aria-hidden="true"></i></div></a>
+    </div>
+      </div>
+</div>
+
+  </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- modal subscription starts here- -->
+
+<div class="modal fade" id="subscriptionModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom_model_header">
+
+       <div class="model_image">
+       <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/popup-thankyou.jpg" class="" alt="submit-image">
+       </div>
+        <button type="button" class="close_submit_button" name="close_submit_button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body thank_you_content Text_color">
+        <h3>Thank you for subscribing.</h3>
+        <p class="Font_size_color">Stay tuned to all the latest tech stories, insights, inspirations, and more from our think tank. You will hear from us soon!</p>
+        <div class="form-group meanwhile_submit_btn">
+                    <a href="https://www.oodlestechnologies.com/services" class="btn custom_cont_button meanwhile_explore buttons">Meanwhile, explore more</a>
+                  </div>
+<div class="modle_icon Font_size_color">
+    <p>Bringing technology solutions for digital business transformation. Catch up with all the latest tech buzz:</p>
+    <div class="all_model_icon">
+    <div class="thank_modle_icon modle_social_icon"><a href="https://www.facebook.com/OodlesTech" rel="noreferrer" target="_blank"><i class="fa fa-facebook icon_adjust" aria-hidden="true"></i></a></div>
+    <div class="thank_modle_icon modle_social_icon"><a href="https://www.linkedin.com/company/oodles-technologies-pvt-ltd" rel="noreferrer" target="_blank"><i class="fa fa-linkedin icon_adjust" aria-hidden="true"></i></a></div>
+    <div class="thank_modle_icon modle_social_icon"><a href="https://twitter.com/oodlestech" rel="noreferrer" target="_blank"><i class="fa fa-twitter icon_adjust" aria-hidden="true"></i></a></div>
+    </div>
+      </div>
+</div>
+
+  </div>
+  </div>
+</div>
+   <!-- modal subscription starts here- -->
+      <section>
+   <div class="">
+      <div class="row service_footer" style="position: relative;overflow: hidden;">
+         <div class="footer_service_nav">
+            <nav>
+               <div class="footer_service_name_slide nav nav-tabs nav-fill owl-loaded owl-drag" id="nav-tab" role="tablist">
+                                      
+                                          
+                                          
+                                          
+                                          
+                                          
+                                          
+                                          
+                                          
+                                          
+                                          
+                                          
+                                          
+                    
+               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 3292px;"><div class="owl-item active" style="width: 253.2px;"><div class="item">
+                        <a class="csutom_footer_ser_link nav-item nav-link " id="nav-MobileApplications-tab" data-toggle="tab" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/#nav-MobileApplications" role="tab" aria-controls="nav-MobileApplications" aria-selected="false"><span>Mobile Applications</span></a>
+                      </div></div><div class="owl-item active" style="width: 253.2px;"><div class="item">
+                        <a class="csutom_footer_ser_link nav-item nav-link " id="nav-VideoContent-tab" data-toggle="tab" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/#nav-VideoContent" role="tab" aria-controls="nav-VideoContent" aria-selected="false"><span>Video Content</span></a>
+                      </div></div><div class="owl-item active" style="width: 253.2px;"><div class="item">
+                        <a class="csutom_footer_ser_link nav-item nav-link " id="nav-BigdataNoSQL-tab" data-toggle="tab" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/#nav-BigdataNoSQL" role="tab" aria-controls="nav-BigdataNoSQL" aria-selected="false"><span>Bigdata &amp; NoSQL</span></a>
+                      </div></div><div class="owl-item active" style="width: 253.2px;"><div class="item">
+                        <a class="csutom_footer_ser_link nav-item nav-link active" id="nav-SaaSApplications-tab" data-toggle="tab" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/#nav-SaaSApplications" role="tab" aria-controls="nav-SaaSApplications" aria-selected="true"><span>SaaS Applications</span></a>
+                      </div></div><div class="owl-item active" style="width: 253.2px;"><div class="item">
+                        <a class="csutom_footer_ser_link nav-item nav-link " id="nav-Miscellaneous-tab" data-toggle="tab" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/#nav-Miscellaneous" role="tab" aria-controls="nav-Miscellaneous" aria-selected="false"><span>Miscellaneous</span></a>
+                      </div></div><div class="owl-item active" style="width: 253.2px;"><div class="item">
+                        <a class="csutom_footer_ser_link nav-item nav-link " id="nav-ERP-tab" data-toggle="tab" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/#nav-ERP" role="tab" aria-controls="nav-ERP" aria-selected="false"><span>ERP</span></a>
+                      </div></div><div class="owl-item" style="width: 253.2px;"><div class="item">
+                        <a class="csutom_footer_ser_link nav-item nav-link " id="nav-QA-tab" data-toggle="tab" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/#nav-QA" role="tab" aria-controls="nav-QA" aria-selected="false"><span>QA</span></a>
+                      </div></div><div class="owl-item" style="width: 253.2px;"><div class="item">
+                        <a class="csutom_footer_ser_link nav-item nav-link " id="nav-Blockchain-tab" data-toggle="tab" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/#nav-Blockchain" role="tab" aria-controls="nav-Blockchain" aria-selected="false"><span>Blockchain</span></a>
+                      </div></div><div class="owl-item" style="width: 253.2px;"><div class="item">
+                        <a class="csutom_footer_ser_link nav-item nav-link " id="nav-AI-tab" data-toggle="tab" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/#nav-AI" role="tab" aria-controls="nav-AI" aria-selected="false"><span>AI</span></a>
+                      </div></div><div class="owl-item" style="width: 253.2px;"><div class="item">
+                        <a class="csutom_footer_ser_link nav-item nav-link " id="nav-IOT-tab" data-toggle="tab" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/#nav-IOT" role="tab" aria-controls="nav-IOT" aria-selected="false"><span>IOT</span></a>
+                      </div></div><div class="owl-item" style="width: 253.2px;"><div class="item">
+                        <a class="csutom_footer_ser_link nav-item nav-link " id="nav-DevOps-tab" data-toggle="tab" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/#nav-DevOps" role="tab" aria-controls="nav-DevOps" aria-selected="false"><span>DevOps</span></a>
+                      </div></div><div class="owl-item" style="width: 253.2px;"><div class="item">
+                        <a class="csutom_footer_ser_link nav-item nav-link " id="nav-ARVR-tab" data-toggle="tab" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/#nav-ARVR" role="tab" aria-controls="nav-ARVR" aria-selected="false"><span>AR/VR</span></a>
+                      </div></div><div class="owl-item" style="width: 253.2px;"><div class="item">
+                        <a class="csutom_footer_ser_link nav-item nav-link " id="nav-DPP-tab" data-toggle="tab" href="https://www.oodlestechnologies.com/blogs/Send-Push-Notification-In-Android-And-iOS-Using-Spring-Boot-Application/#nav-DPP" role="tab" aria-controls="nav-DPP" aria-selected="false"><span>DPP</span></a>
+                      </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"></div></div>
+            </nav>
+            <div class="tab-content py-3 px-3 px-sm-0 tab_content_services" id="nav-tabContent">
+               <!-- Slider section -->
+
+                                   <div class="tab-pane fade  " id="nav-VideoContent" role="tabpanel" aria-labelledby="nav-VideoContent-tab">
+                      <div class="container">
+                         <div class="row">
+                            <div class="col-md-3">
+                               <div class="Ai_slider">
+                                
+                                  <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/video-camera.png" class="service_icon_img" alt="AR VR Application Development Company">
+                               </div>
+                            </div>
+                            <div class="col-md-9">
+                               <div class="owl-carousel footer_crousel owl-loaded owl-drag owl-hidden">
+                                
+                               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1120px;"><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;">
+                                  <ul class="footer_sub_service">
+                                    <li> <a href="https://www.oodlestechnologies.com/blog/tagged/ffmpeg">ffmpeg </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/kaltura">kaltura </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/netgem">netgem </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/OTT">OTT </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/video">video </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Smart-tv-App">Smart tv App </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/wowza">wowza </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/roku">roku </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/LiveStreaming">LiveStreaming </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/WebRTC">WebRTC </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/AppleTV">AppleTV </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Amazon-fire-TV">Amazon fire TV </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service">                                  </ul>
+                                </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                                    <div class="tab-pane fade  " id="nav-MobileApplications" role="tabpanel" aria-labelledby="nav-MobileApplications-tab">
+                      <div class="container">
+                         <div class="row">
+                            <div class="col-md-3">
+                               <div class="Ai_slider">
+                                
+                                  <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/Mobile Application.png" class="service_icon_img" alt="AR VR Application Development Company">
+                               </div>
+                            </div>
+                            <div class="col-md-9">
+                               <div class="owl-carousel footer_crousel owl-loaded owl-drag owl-hidden">
+                                
+                               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1120px;"><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;">
+                                  <ul class="footer_sub_service">
+                                    <li> <a href="https://www.oodlestechnologies.com/blog/tagged/phonegap">phonegap </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/ios">ios </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/mobile-application">mobile application </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/cordova">cordova </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/swift">swift </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Dart">Dart </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/titanium">titanium </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/css">css </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Flutter">Flutter </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Kotlin">Kotlin </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/android">android </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/React-Native">React Native </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service">                                  </ul>
+                                </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                                    <div class="tab-pane fade  " id="nav-BigdataNoSQL" role="tabpanel" aria-labelledby="nav-BigdataNoSQL-tab">
+                      <div class="container">
+                         <div class="row">
+                            <div class="col-md-3">
+                               <div class="Ai_slider">
+                                
+                                  <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/Big Data Intelligence.png" class="service_icon_img" alt="AR VR Application Development Company">
+                               </div>
+                            </div>
+                            <div class="col-md-9">
+                               <div class="owl-carousel footer_crousel owl-loaded owl-drag owl-hidden">
+                                
+                               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1120px;"><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;">
+                                  <ul class="footer_sub_service">
+                                    <li> <a href="https://www.oodlestechnologies.com/blog/tagged/nosql">nosql </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/graphics">graphics </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/bigdata">bigdata </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/artificial-Intelligence">artificial Intelligence </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/hadoop">hadoop </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/neo4j">neo4j </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/MachineLearning">MachineLearning </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/PredictiveAnalytics">PredictiveAnalytics </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/mahout">mahout </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/UI">UI </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/mongodb">mongodb </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Logo-Design">Logo Design </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/RecommendationSystem">RecommendationSystem </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/UX">UX </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/web-designing">web designing </a></li>                                  </ul>
+                                </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                                    <div class="tab-pane fade show active" id="nav-SaaSApplications" role="tabpanel" aria-labelledby="nav-SaaSApplications-tab">
+                      <div class="container">
+                         <div class="row">
+                            <div class="col-md-3">
+                               <div class="Ai_slider">
+                                
+                                  <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/Software as a Service.png" class="service_icon_img" alt="AR VR Application Development Company">
+                               </div>
+                            </div>
+                            <div class="col-md-9">
+                               <div class="owl-carousel footer_crousel owl-loaded owl-drag">
+                                
+                               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2520px;"><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;">
+                                  <ul class="footer_sub_service">
+                                    <li> <a href="https://www.oodlestechnologies.com/blog/tagged/html">html </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Angular2">Angular2 </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/oops">oops </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/grails">grails </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/nodejs">nodejs </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Angular">Angular </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Shopify">Shopify </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/CakePHP">CakePHP </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/angularjs">angularjs </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Knockoutjs">Knockoutjs </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Java">Java </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/html5">html5 </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/php">php </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Web-Apps">Web Apps </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Java-Virtual-Machine">Java Virtual Machine </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/PWA">PWA </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/reverseajax">reverseajax </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/javascript">javascript </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/bootstrap">bootstrap </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/cloud-computing">cloud computing </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Meteor">Meteor </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/vue.js">vue.js </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/jquery">jquery </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/mysql">mysql </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/ngrok">ngrok </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Moodle">Moodle </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/saas">saas </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Mean-stack">Mean stack </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/ReactJS">ReactJS </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/plugin">plugin </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/LMS">LMS </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Spring-boot">Spring boot </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Django">Django </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Laravel">Laravel </a></li>                                  </ul>
+                                </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                                    <div class="tab-pane fade  " id="nav-Blockchain" role="tabpanel" aria-labelledby="nav-Blockchain-tab">
+                      <div class="container">
+                         <div class="row">
+                            <div class="col-md-3">
+                               <div class="Ai_slider">
+                                
+                                  <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/Blockchain.png" class="service_icon_img" alt="AR VR Application Development Company">
+                               </div>
+                            </div>
+                            <div class="col-md-9">
+                               <div class="owl-carousel footer_crousel owl-loaded owl-drag owl-hidden">
+                                
+                               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1120px;"><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;">
+                                  <ul class="footer_sub_service">
+                                    <li> <a href="https://www.oodlestechnologies.com/blog/tagged/BigchainDB">BigchainDB </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/supply-chain">supply chain </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/EOS">EOS </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Cryptocurrency">Cryptocurrency </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/ICO">ICO </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/STO">STO </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Smart-Contract">Smart Contract </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/blockchain">blockchain </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Hyperledger">Hyperledger </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Ethereum">Ethereum </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Stellar">Stellar </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Multichain">Multichain </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service">                                  </ul>
+                                </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                                    <div class="tab-pane fade  " id="nav-Miscellaneous" role="tabpanel" aria-labelledby="nav-Miscellaneous-tab">
+                      <div class="container">
+                         <div class="row">
+                            <div class="col-md-3">
+                               <div class="Ai_slider">
+                                
+                                  <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/service-common.svg" class="service_icon_img" alt="AR VR Application Development Company">
+                               </div>
+                            </div>
+                            <div class="col-md-9">
+                               <div class="owl-carousel footer_crousel owl-loaded owl-drag owl-hidden">
+                                
+                               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1680px;"><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;">
+                                  <ul class="footer_sub_service">
+                                    <li> <a href="https://www.oodlestechnologies.com/blog/tagged/wordpress">wordpress </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Data-Analysis">Data Analysis </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/bitcoin">bitcoin </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Git">Git </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Business-Analysis">Business Analysis </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/data-management-solutions">data management solutions </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/nginx">nginx </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/postgresql">postgresql </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/OpenCV">OpenCV </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Fresco">Fresco </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/blockchain-mobile-wallet">blockchain mobile wallet </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Optaplanner">Optaplanner </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/cling">cling </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/GDPR">GDPR </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/digital-asset-management">digital asset management </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Server">Server </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/ApacheKafka">ApacheKafka </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Kafka">Kafka </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Requirement-Analysis">Requirement Analysis </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Impact-and-Gap-analysis">Impact and Gap analysis </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service">                                  </ul>
+                                </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                                    <div class="tab-pane fade  " id="nav-DPP" role="tabpanel" aria-labelledby="nav-DPP-tab">
+                      <div class="container">
+                         <div class="row">
+                            <div class="col-md-3">
+                               <div class="Ai_slider">
+                                
+                                  <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/Data Protection and Privacy.png" class="service_icon_img" alt="AR VR Application Development Company">
+                               </div>
+                            </div>
+                            <div class="col-md-9">
+                               <div class="owl-carousel footer_crousel owl-loaded owl-drag owl-hidden">
+                                
+                               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 280px;"><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;">
+                                  <ul class="footer_sub_service">
+                                    <li> <a href="https://www.oodlestechnologies.com/blog/tagged/DPP">DPP </a></li>                                  </ul>
+                                </div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next disabled"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                                    <div class="tab-pane fade  " id="nav-IOT" role="tabpanel" aria-labelledby="nav-IOT-tab">
+                      <div class="container">
+                         <div class="row">
+                            <div class="col-md-3">
+                               <div class="Ai_slider">
+                                
+                                  <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/Internet of Things .png" class="service_icon_img" alt="AR VR Application Development Company">
+                               </div>
+                            </div>
+                            <div class="col-md-9">
+                               <div class="owl-carousel footer_crousel owl-loaded owl-drag owl-hidden">
+                                
+                               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 560px;"><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;">
+                                  <ul class="footer_sub_service">
+                                    <li> <a href="https://www.oodlestechnologies.com/blog/tagged/Smart-Home">Smart Home </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/raspberrypi">raspberrypi </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/wearables">wearables </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/apple-watch">apple watch </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/android-wear">android wear </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/IoT">IoT </a></li>                                  </ul>
+                                </div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next disabled"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                                    <div class="tab-pane fade  " id="nav-DevOps" role="tabpanel" aria-labelledby="nav-DevOps-tab">
+                      <div class="container">
+                         <div class="row">
+                            <div class="col-md-3">
+                               <div class="Ai_slider">
+                                
+                                  <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/DevOps.png" class="service_icon_img" alt="AR VR Application Development Company">
+                               </div>
+                            </div>
+                            <div class="col-md-9">
+                               <div class="owl-carousel footer_crousel owl-loaded owl-drag owl-hidden">
+                                
+                               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1400px;"><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;">
+                                  <ul class="footer_sub_service">
+                                    <li> <a href="https://www.oodlestechnologies.com/blog/tagged/Docker">Docker </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Jenkins">Jenkins </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Ansible">Ansible </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/MicroservicesSetup">MicroservicesSetup </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/amazon-aws-ses">amazon aws ses </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/AWS">AWS </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Google-Cloud">Google Cloud </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Microservices">Microservices </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/server-security">server security </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Kubernetes">Kubernetes </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/java-microservices">java microservices </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/DevOps">DevOps </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/azure">azure </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Bluemix">Bluemix </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/linux">linux </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/AWS-Kinesis">AWS Kinesis </a></li></ul></div></div><div class="owl-item" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service">                                  </ul>
+                                </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                                    <div class="tab-pane fade  " id="nav-ARVR" role="tabpanel" aria-labelledby="nav-ARVR-tab">
+                      <div class="container">
+                         <div class="row">
+                            <div class="col-md-3">
+                               <div class="Ai_slider">
+                                
+                                  <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/icon-AR.png" class="service_icon_img" alt="AR VR Application Development Company">
+                               </div>
+                            </div>
+                            <div class="col-md-9">
+                               <div class="owl-carousel footer_crousel owl-loaded owl-drag owl-hidden">
+                                
+                               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 560px;"><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;">
+                                  <ul class="footer_sub_service">
+                                    <li> <a href="https://www.oodlestechnologies.com/blog/tagged/Virtualreality">Virtualreality </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/unityapp">unityapp </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/AR-VR">AR VR </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/sparkAR">sparkAR </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/AR/VR/MR">AR/VR/MR </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Augmented-reality">Augmented reality </a></li>                                  </ul>
+                                </div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next disabled"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                                    <div class="tab-pane fade  " id="nav-AI" role="tabpanel" aria-labelledby="nav-AI-tab">
+                      <div class="container">
+                         <div class="row">
+                            <div class="col-md-3">
+                               <div class="Ai_slider">
+                                
+                                  <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/Artificial Intelligence.png" class="service_icon_img" alt="AR VR Application Development Company">
+                               </div>
+                            </div>
+                            <div class="col-md-9">
+                               <div class="owl-carousel footer_crousel owl-loaded owl-drag owl-hidden">
+                                
+                               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 280px;"><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;">
+                                  <ul class="footer_sub_service">
+                                    <li> <a href="https://www.oodlestechnologies.com/blog/tagged/Chatbot">Chatbot </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/python">python </a></li>                                  </ul>
+                                </div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next disabled"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                                    <div class="tab-pane fade  " id="nav-ERP" role="tabpanel" aria-labelledby="nav-ERP-tab">
+                      <div class="container">
+                         <div class="row">
+                            <div class="col-md-3">
+                               <div class="Ai_slider">
+                                
+                                  <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/Enterprise Resource Planning .png" class="service_icon_img" alt="AR VR Application Development Company">
+                               </div>
+                            </div>
+                            <div class="col-md-9">
+                               <div class="owl-carousel footer_crousel owl-loaded owl-drag owl-hidden">
+                                
+                               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 840px;"><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;">
+                                  <ul class="footer_sub_service">
+                                    <li> <a href="https://www.oodlestechnologies.com/blog/tagged/HRMS">HRMS </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/CRM">CRM </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/ERP">ERP </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/ERPNext">ERPNext </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service"><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Odoo">Odoo </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Salesforce">Salesforce </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/qrcode">qrcode </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/api">api </a></li></ul></div></div><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;"><ul class="footer_sub_service">                                  </ul>
+                                </div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next disabled"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                                    <div class="tab-pane fade  " id="nav-QA" role="tabpanel" aria-labelledby="nav-QA-tab">
+                      <div class="container">
+                         <div class="row">
+                            <div class="col-md-3">
+                               <div class="Ai_slider">
+                                
+                                  <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/Quality Assurance.png" class="service_icon_img" alt="AR VR Application Development Company">
+                               </div>
+                            </div>
+                            <div class="col-md-9">
+                               <div class="owl-carousel footer_crousel owl-loaded owl-drag owl-hidden">
+                                
+                               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 280px;"><div class="owl-item active" style="width: 265px; margin-right: 15px;"><div class="item" style="width: 100%;">
+                                  <ul class="footer_sub_service">
+                                    <li> <a href="https://www.oodlestechnologies.com/blog/tagged/testing">testing </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/Quality-Assurance">Quality Assurance </a></li><li> <a href="https://www.oodlestechnologies.com/blog/tagged/QA">QA </a></li>                                  </ul>
+                                </div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next disabled"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                
+
+            </div>
+         </div>
+                  <!-- custom_social_icon -->
+      </div>
+   </div>
+   
+
+   
+   <section>
+   <!-- Footer menu section -->
+   <section class="technologies_footer">
+      
+
+      <div class="container-fluid position_social">
+
+         <div class="row row_footer top_bottom_padding">
+         <div class="custom_logo_text ">
+
+              <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/Mask Group 1.svg" class="all_logo_img" alt="Mask Group">
+              <h4><a href="https://www.oodlesmarketing.com/" rel="noreferrer" target="_blank" class="hide_markt_studio">Oodles Marketing</a></h4>
+
+              <h4><a href="https://www.oodlesstudio.com/" rel="noreferrer" target="_blank" class="hide_markt_studio">Oodles Studio</a></h4>
+
+              </div>
+
+              <div class="  col-lg-3 col-md-3 col-sm-3 col-xs-12 footer_custom_aligned_widget footer_padding mobile_icons custom_logo_text">
+
+
+              
+              <div class="custom_logo_text custom_logo_text_second">
+               <div id="text-7" class="widget-container widget_text">			<div class="textwidget"><ul class="footer_items">
+<li><a href="https://www.oodlesmarketing.com/" target="_blank" rel="noopener noreferrer">Oodles Marketing</a></li>
+<li><a href="https://www.oodlesstudio.com/" target="_blank" rel="noopener noreferrer">Oodles Studio</a></li>
+<li><a href="https://blockchain.oodles.io/" target="_blank" rel="noopener noreferrer">Oodles Blockchain</a></li>
+<li><a href="https://aitoolkit.oodles.io/" target="_blank" rel="noopener noreferrer">Oodles AI</a></li>
+<li><a href="https://erpsolutions.oodles.io/" target="_blank" rel="noopener noreferrer">Oodles ERP</a></li>
+<li><a href="https://dataprotectionandprivacy.oodles.io/" target="_blank" rel="noopener noreferrer">Oodles DPP</a></li>
+</ul>
+</div>
+		</div>                  </div>
+            </div>
+         <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 footer_custom_aligned_widget footer_padding mobile_icons not_show_on_web"> -->
+           <!-- <div class=""> -->
+           <!-- <img src="/assets/images/homepage/Footer-logs/Mask Group 1.svg" class="all_logo_img homepage_footer_logo" alt="Mask Group"> -->
+           <!-- </div> -->
+
+           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 footer_custom_aligned_widget footer_padding mobile_icons  height_for_logo">
+            <div class="">
+               <img src="./Send Push Notification In Android And iOS Using Spring Boot Application_files/Mask Group 1.svg" class="all_logo_img homepage_footer_logo" alt="Mask Group">
+          </div>
+           <div class="col-md-12 " style=" padding: 0px !important;">
+              <h4 class="follow_us_footer footer-social-btn-icon">
+
+              <span class="follow_us_container">Follow us</span>
+
+              <div class="social_icon_on">
+
+            <div class="socialIconHover">
+              <a href="https://www.facebook.com/OodlesTech" target="_blank">
+                <!-- <img src="<//?php echo get_stylesheet_directory_uri();?>/assets/images/social_icon/icon-facebook-gray.svg" alt="" class="b_Hover">   -->
+                <!-- <img src="<//?php echo get_stylesheet_directory_uri();?>/assets/images/social_icon/icon-facebook-.svg" alt="" class="a_Hover"> -->
+                <div class="common-footer-sprite social-icons-1"></div>
+              </a>
+            </div>
+            <div class="socialIconHover">
+              <a href="https://twitter.com/oodlestech" target="_blank">
+                <!-- <img src="<//?php echo get_stylesheet_directory_uri();?>/assets/images/social_icon/icon-twitter-gray.svg" alt="" class="b_Hover"> -->
+                <!-- <img src="<//?php echo get_stylesheet_directory_uri();?>/assets/images/social_icon/icon-twitter.svg" alt="" class="a_Hover"> -->
+                <div class="common-footer-sprite social-icons-2"></div>
+              </a>
+            </div>
+            <div class="socialIconHover">
+              <a href="https://www.linkedin.com/company/oodles-technologies-pvt-ltd" target="_blank">
+                <!-- <img src="<//?php echo get_stylesheet_directory_uri();?>/assets/images/social_icon/icon-LinkedIn-gray.svg" alt="" class="b_Hover"> -->
+                <!-- <img src="<//?php echo get_stylesheet_directory_uri();?>/assets/images/social_icon/icon-LinkedIn-.svg" alt="" class="a_Hover"> -->
+                <div class="common-footer-sprite social-icons-3"></div>
+              </a>
+            </div>
+          <div class="socialIconHoverWithoutHover">
+            <a href="https://wa.me/918800492111" class="img_whatsapp" onclick="return whatsAppTracking()" target="_blank" title="WhatsApp">
+              <div class="common-footer-sprite social-icons-4"></div>
+            </a>
+            <a href="skype:live:laheek.saifee?chat" target="_blank" onclick="return skypeTracking()" class="img_skype" title="Skype">
+              <div class="common-footer-sprite social-icons-5"></div>
+            </a>
+            <a href="https://telegram.me/laiqsaifee">
+              <div class="common-footer-sprite social-icons-6"></div>
+            </a>
+          </div>
+
+          </div>
+          </h4>
+          </div>
+          
+          <div class="Certified-text text-center">
+            <h6>We are<b> ISO 9001:2015 </b>Certified</h6>
+          </div>
+</div>
+
+
+<div class="  col-lg-3 col-md-3 col-sm-12 col-xs-12  footer_padding mobile_icons ">
+                  <div id="text-5" class="widget-container widget_text">
+                     <div class="textwidget">
+                     <div id="text-5" class="widget-container widget_text">			<div class="textwidget"><ul class="footer_items">
+<h4 class="footer_srvices_heading">Valued Services</h4>
+<li><a href="https://www.oodlesmarketing.com/">Digital Marketing</a></li>
+<li><a href="https://www.oodlesstudio.com/">Design Studio</a></li>
+<li><a href="https://blockchain.oodles.io/">Blockchain</a></li>
+<li><a href="https://artificialintelligence.oodles.io/">Artificial Intelligence</a></li>
+<li><a href="https://erpsolutions.oodles.io/">ERP Solutions</a></li>
+<li><a href="https://dataprotectionandprivacy.oodles.io/">Data Protection and Privacy</a></li>
+</ul>
+</div>
+		</div>                     </div>
+                  </div>
+               </div>
+               <div class="  col-lg-2 col-md-3 col-sm-12 col-xs-12  footer_padding mobile_icons ">
+                  <div id="text-5" class="widget-container widget_text">
+                     <div class="textwidget">
+                     <div id="text-3" class="widget-container widget_text">			<div class="textwidget"><ul class="footer_items">
+<h4 class="footer_srvices_heading">Expertise</h4>
+<li><a href="https://www.oodlestechnologies.com/services/">Services</a></li>
+<li><a href="https://www.oodlestechnologies.com/technologies-stack/">Tech Stack</a></li>
+<li><a href="https://www.oodlestechnologies.com/our-work/">Our Work<br>
+</a></li>
+</ul>
+</div>
+		</div>                     </div>
+                  </div>
+               </div>
+               <div class="  col-lg-2 col-md-3 col-sm-12 col-xs-12  footer_padding mobile_icons ">
+                  <div id="text-5" class="widget-container widget_text">
+                     <div class="textwidget">
+                     <div id="text-2" class="widget-container widget_text">			<div class="textwidget"><ul class="footer_items">
+<h4 class="footer_srvices_heading">Resources</h4>
+<li><a href="https://www.oodlestechnologies.com/blogs/">Blog</a></li>
+<li><a href="https://www.oodlestechnologies.com/privacy-policy/">Privacy Policy</a></li>
+<li><a href="https://www.oodlestechnologies.com/whats-new-in-oodles/">What’s new</a></li>
+</ul>
+</div>
+		</div>                     </div>
+                  </div>
+               </div>
+               <div class="  col-lg-2 col-md-3 col-sm-12 col-xs-12  footer_padding mobile_icons ">
+                  <div id="text-5" class="widget-container widget_text">
+                     <div class="textwidget">
+                     <div id="text-8" class="widget-container widget_text">			<div class="textwidget"><ul class="footer_items">
+<h4 class="footer_srvices_heading">Connect with us</h4>
+<li><a href="https://www.oodlestechnologies.com/contactus/">Contact us</a></li>
+<li><a href="https://www.oodlestechnologies.com/careers/">Career</a></li>
+</ul>
+</div>
+		</div>                     </div>
+                  </div>
+               </div>
+         <!-- new footer end -->
+           </div>
+        
+
+            
+
+      </div>
+
+         
+
+
+   </section>
+      <!-- Copyright Text section start here -->
+   <section class="background_color_copyright">
+
+      <div class="container mobile_footer">
+         <div class="row  flex-column-reverse flex-md-row web_design">
+         <div class="col-lg-6 col-md-6  col-sm-12   col-xs-12 copyrigt_text">
+            <div id="text-6" class="widget-container widget_text">			<div class="textwidget"><h4>© Copyright 2009-2020 Oodles Technologies Pvt Ltd. All rights reserved.</h4>
+</div>
+		</div>         </div>
+         <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12  mobile_column social_media_margin">
+
+               <!--  -->
+            </div>
+            <!-- <div class="footer_fa_icons">
+                     <div class="icons-right">
+                         <span class="fa-stack fa-lg">
+                          <a href=""><i class="fa fa-facebook-f "></i></a>
+                        </span>
+                        <span class="fa-stack fa-lg">
+                        <a href=""><i class="fa fa-twitter "></i></a>
+                        </span>
+                        <span class="fa-stack fa-lg">
+                        <a href=""><i class="fa fa-linkedin "></i></a>
+                        </span>
+                    </div>
+            </div> -->
+
+
+
+        <div class="websocialParent websocialParent-sprite">
+          <span class="social_icon footer_display_mobile">
+            <a href="https://wa.me/918800492111" target="_blank" class="img_whatsapp" title="WhatsApp">
+              <!-- <img src="<//?php echo get_template_directory_uri(); ?>/assets/images/social_icon/icon-whatsapp-.svg" alt=""> -->
+              <div class="common-footer-sprite click-social-icons-1"></div>
+            </a>
+          </span>
+          <span class="social_icon footer_display_mobile"> 
+            <a href="skype:live:laheek.saifee?chat" target="_blank" class="img_skype" title="Skype">
+              <!-- <img src="<//?php echo get_template_directory_uri(); ?>/assets/images/social_icon/icon-Skype-.svg" alt=""> -->
+              <div class="common-footer-sprite click-social-icons-2"></div>
+            </a>
+          </span>
+          <span class="social_icon footer_display_mobile"> 
+            <a href="https://telegram.me/laiqsaifee" target="blank">
+              <!-- <img src="<//?php echo get_template_directory_uri(); ?>/assets/images/social_icon/icon-telegram-.svg" alt=""> -->
+              <div class="common-footer-sprite click-social-icons-3 mb-0"></div>
+            </a>
+          </span>   
+        </div>
+
+            <div class="display_footer_floating">
+              <div class="button btn-group-sm button_for_icons" id="mini-fab" style="background:none">
+                <!-- <img src="<//?php echo get_template_directory_uri(); ?>/assets/images/homepage/chat.svg" alt="" class=""> -->
+                <div class="common-footer-sprite social-click-btn"></div>
+              </div>
+
+
+         <div class="scroll-to-top">
+          <span class="scroll_image" style="">
+            <!-- <img title="Top" src="</?php echo get_template_directory_uri(); ?>/assets/images/homepage/Top-Scroll-Icon.png" class="scroll_image" alt="Top-Scroll"> -->
+            <!-- <i class="fa fa-angle-up" aria-hidden="true"></i> -->
+            <div class="common-footer-sprite scroll-btn"></div>
+          </span>
+
+        </div>
+
+ </div>
+      </div>
+   </div></section>
+      <script>
+    if( typeof serivce_pop_name !== "undefined" ){
+      if( jQuery(serivce_pop_name).length ){
+        jQuery(".csutom_footer_ser_link").removeClass('active show');
+        jQuery(serivce_pop_name).click();
+      } else {
+        jQuery(".csutom_footer_ser_link").removeClass('active show');
+        jQuery("#nav-Miscellaneous-tab").click();
+      }
+    }
+   
+   </script>
+</section></section></footer>
+<!-- .site-footer -->
+<!-- .site-inner -->
+<!-- .site -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var customObject = {"ajaxurl":"https:\/\/www.oodlestechnologies.com\/wp-admin\/admin-ajax.php","site_url":"https:\/\/www.oodlestechnologies.com\/wp-content\/themes\/oodlestechnologies","home_url":"https:\/\/www.oodlestechnologies.com","page_slug":"blogs"};
+/* ]]> */
+</script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var blogObject = {"ajaxurl":"https:\/\/www.oodlestechnologies.com\/wp-admin\/admin-ajax.php","site_url":"https:\/\/www.oodlestechnologies.com\/wp-content\/themes\/oodlestechnologies"};
+/* ]]> */
+</script>
+
+
+<link defer="" href="./Send Push Notification In Android And iOS Using Spring Boot Application_files/css" rel="stylesheet">
+
+
+
+
+
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Database Caching 29/31 queries in 0.013 seconds using memcached
+
+Served from: www.oodlestechnologies.com @ 2020-09-13 03:58:02 by W3 Total Cache
+--></body></html>
